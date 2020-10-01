@@ -1,13 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const CashSchema = mongoose.Schema(
     {
         currency: String,
-        value: Number,
+        amount: Number,
     },
     {
         timestamps: true,
-    }
+    },
 );
 
-module.exports = CashSchema;
+const Cash = mongoose.model('cash', CashSchema);
+module.exports = Cash;

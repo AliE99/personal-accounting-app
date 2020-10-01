@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/", index_router);
-app.use("/cash", cash_router);
+app.use("/cashes", cash_router);
 
 // listen for requests
 app.listen(3000, () => {

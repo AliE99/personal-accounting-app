@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const cashes = require("../controllers/cash_controller");
 
 // Create and Save a new Cash
