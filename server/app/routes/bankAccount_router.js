@@ -9,12 +9,12 @@ router.post("/", accounts.create);
 router.get("/", accounts.findAll);
 
 // Find a single account with a accountId
-router.get("/:accountId", accounts.findOne);
+// router.get("/:accountId", accounts.findOne);
 
 // Update a account identified by the accountId in the request
-router.put("/:accountId", accounts.update);
+// router.put("/:accountId", accounts.update);
 
 // Delete a account with the specified accountId in the request
-router.delete("/:accountId", accounts.delete);
+// router.delete("/:accountId", accounts.delete);
 
 module.exports = router;

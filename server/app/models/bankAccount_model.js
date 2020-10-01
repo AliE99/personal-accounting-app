@@ -4,6 +4,7 @@ const AccountSchema = mongoose.Schema(
     {
         name: String,
         amount: String,
+        currency: {type: String, default: 'rial'},
     },
     {
         timestamps: true,
