@@ -20,24 +20,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8801a735-9b66-4f06-80b1-bf3b3c907b82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/personal-accounting.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/models/cash_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/cash_model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/routes/cash_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/routes/cash_router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/models/bankAccount_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/routes/bankAccount_router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1iE3FYmDwL97NLsDeGJcgiGwvVA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -76,6 +82,7 @@
       <updated>1601458820867</updated>
       <workItem from="1601458822317" duration="99000" />
       <workItem from="1601458931478" duration="5988000" />
+      <workItem from="1601535254445" duration="1897000" />
     </task>
     <servers />
   </component>
