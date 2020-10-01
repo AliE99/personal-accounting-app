@@ -1,11 +1,11 @@
-const Account = require('../models/bankAccount_model');
+const Account = require("../models/bankAccount_model");
 
 exports.create = (req, res) => {
     // Create a new Account
     const account = new Account({
         bank_name: req.body.bank_name,
         amount: req.body.amount,
-        currency: req.body.currency || 'rial',
+        currency: req.body.currency || "rial",
     });
     
     // Save the account in the database
@@ -15,7 +15,7 @@ exports.create = (req, res) => {
         res.status(500).send({
             message:
                 err.message ||
-                'Some error occurred while creating the Note.',
+                "Some error occurred while creating the Note.",
         });
     });
 };
@@ -28,7 +28,7 @@ exports.findAll = (req, res) => {
         res.status(500).send({
             message:
                 err.message ||
-                'Some error occurred while retrieving accounts.',
+                "Some error occurred while retrieving accounts.",
         });
     });
 };
@@ -38,18 +38,18 @@ exports.findOne = (req, res) => {
     Account.findById(req.params.accountId).then(account => {
         if (!account) {
             return res.status(404).send({
-                message: 'Account not found with id ' + req.params.accountId,
+                message: "Account not found with id " + req.params.accountId,
             });
         }
         res.send(account);
     }).catch(err => {
-        if (err.kind === 'ObjectId') {
+        if (err.kind === "ObjectId") {
             return res.status(404).send({
-                message: 'Account not found with id ' + req.params.accountId,
+                message: "Account not found with id " + req.params.accountId,
             });
         }
         return res.status(500).send({
-            message: 'Error retrieving Account with id ' + req.params.accountId,
+            message: "Error retrieving Account with id " + req.params.accountId,
         });
     });
     
@@ -66,7 +66,7 @@ exports.update = (req, res) => {
         res.status(500).send({
             message:
                 err.message ||
-                'Some error occurred while Updating the Account.',
+                "Some error occurred while Updating the Account.",
         });
     });
 };
@@ -76,18 +76,18 @@ exports.delete = (req, res) => {
     Account.findByIdAndDelete(req.params.accountId).then(account => {
         if (!account) {
             return res.status(404).send({
-                message: 'Account not found with id ' + req.params.accountId,
+                message: "Account not found with id " + req.params.accountId,
             });
         }
-        res.send({message: 'Note deleted successfully!'});
+        res.send({message: "Note deleted successfully!"});
     }).catch(err => {
-        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+        if (err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
-                message: 'Note not found with id ' + req.params.accountId,
+                message: "Note not found with id " + req.params.accountId,
             });
         }
         return res.status(500).send({
-            message: 'Could not delete note with id ' + req.params.accountId,
+            message: "Could not delete note with id " + req.params.accountId,
         });
     });
 };
