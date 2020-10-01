@@ -4,14 +4,13 @@ const Cash = require("../models/cash_model");
 const assets = {};
 
 exports.findAll = (req, res) => {
+    // Get all of the Accounts
     Account.find().then(accounts => {
         assets.account = accounts;
-        // res.write(accounts);
         
-        ////////////////////////////////////////////////////////////////////
+        // Get all of the cashes
         Cash.find().then(cashes => {
-            // res.write(cashes);
-            assets.cash = accounts;
+            assets.cash = cashes;
             res.send(assets);
         }).catch(err => {
             res.status(500).send({
@@ -20,7 +19,6 @@ exports.findAll = (req, res) => {
                     "Some error occurred while retrieving notes.",
             });
         });
-        ////////////////////////////////////////////////////////////////////
         
     }).catch(err => {
         res.status(500).send({
@@ -29,4 +27,5 @@ exports.findAll = (req, res) => {
                 "Some error occurred while retrieving accounts.",
         });
     });
+    
 };
