@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const AccountSchema = mongoose.Schema(
     {
-        name: String,
+        bank_name: String,
         amount: String,
-        currency: {type: String, default: 'rial'},
+        currency: String,
     },
     {
         timestamps: true,
