@@ -31,44 +31,12 @@ exports.findAll = (req, res) => {
     
 };
 
-// Retrieve and return assets of this month
-exports.findByThisMonth = (req, res) => {
-    const date = new Date().getMonth() + 1;
-    Account.aggregate([
-        {$addFields: {"month": {$month: "$createdAt"}}},
-        {$match: {month: date}},
-    ]).then(accounts => {
-        assets.account = accounts;
-        ////////////////////////////
-        Cash.aggregate([
-            {$addFields: {"month": {$month: "$createdAt"}}},
-            {$match: {month: date}},
-        ]).then(cashes => {
-            assets.cash = cashes;
-            res.send(assets);
-        }).catch(err=>{
-            res.status(500).send({
-                message:
-                    err.message ||
-                    "Some error occurred while retrieving cashes.",
-            });
-        });
-    }).catch(err => {
-        res.status(500).send({
-            message:
-                err.message ||
-                "Some error occurred while retrieving accounts.",
-        });
-    });
-};
-
 // Retrieve and return assets of the specific month
 exports.findByMonth = (req, res) => {
-    console.log(req.params.monthId);
-    var date;
-    if(typeof req.params.monthId === "undefined"){
+    let date;
+    if (typeof req.params.monthId === "undefined") {
         date = new Date().getMonth() + 1;
-    }else{
+    } else {
         date = parseInt(req.params.monthId);
     }
     Account.aggregate([
@@ -83,7 +51,7 @@ exports.findByMonth = (req, res) => {
         ]).then(cashes => {
             assets.cash = cashes;
             res.send(assets);
-        }).catch(err=>{
+        }).catch(err => {
             res.status(500).send({
                 message:
                     err.message ||
