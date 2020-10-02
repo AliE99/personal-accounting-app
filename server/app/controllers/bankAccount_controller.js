@@ -92,3 +92,18 @@ exports.delete = (req, res) => {
     });
 };
 
+// Calculate the Total money stored in the bank accounts
+exports.totalAmount = (req, res) => {
+    Account.aggregate([
+        {
+            $group:
+                {
+                    _id: "Total Amount",
+                    totalMoney: {$sum: "$amount"},
+                },
+        },
+    ]).then(data => {
+        res.send(data);
+    });
+};
+

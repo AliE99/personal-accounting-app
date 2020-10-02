@@ -8,6 +8,9 @@ router.post("/", accounts.create);
 // Retrieve and return all accounts from the database.
 router.get("/", accounts.findAll);
 
+// Calculate the Total money stored in the bank accounts
+router.get("/total",accounts.totalAmount);
+
 // Find a single account with a accountId
 router.get("/:accountId", accounts.findOne);
 
@@ -16,5 +19,7 @@ router.put("/:accountId", accounts.update);
 
 // Delete a account with the specified accountId in the request
 router.delete("/:accountId", accounts.delete);
+
+
 
 module.exports = router;

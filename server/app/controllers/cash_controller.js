@@ -112,3 +112,18 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+// Calculate the Total money stored as cash
+exports.totalAmount = (req, res) => {
+    Cash.aggregate([
+        {
+            $group:
+                {
+                    _id: "Total Amount",
+                    totalMoney: {$sum: "$amount"},
+                },
+        },
+    ]).then(data => {
+        res.send(data);
+    });
+};
