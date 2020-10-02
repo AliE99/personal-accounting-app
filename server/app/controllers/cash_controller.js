@@ -1,4 +1,4 @@
-const Cash = require('../models/cash_model');
+const Cash = require("../models/cash_model");
 
 // Create and Save a new Cash
 exports.create = (req, res) => {
@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     //
     // Create a Cash
     const cash = new Cash({
-        currency: req.body.currency || 'rial',
+        currency: req.body.currency || "rial",
         amount: req.body.amount || 0,
     });
     
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
         res.status(500).send({
             message:
                 err.message ||
-                'Some error occurred while creating the Note.',
+                "Some error occurred while creating the Note.",
         });
     });
     
@@ -36,7 +36,7 @@ exports.findAll = (req, res) => {
         res.status(500).send({
             message:
                 err.message ||
-                'Some error occurred while retrieving notes.',
+                "Some error occurred while retrieving notes.",
         });
     });
 };
@@ -46,18 +46,18 @@ exports.findOne = (req, res) => {
     Cash.findById(req.params.cashId).then(cash => {
         if (!cash) {
             return res.status(404).send({
-                message: 'Note not found with id ' + req.params.cashId,
+                message: "Note not found with id " + req.params.cashId,
             });
         }
         res.send(cash);
     }).catch(err => {
-        if (err.kind === 'ObjectId') {
+        if (err.kind === "ObjectId") {
             return res.status(404).send({
-                message: 'Note not found with id ' + req.params.cashId,
+                message: "Note not found with id " + req.params.cashId,
             });
         }
         return res.status(500).send({
-            message: 'Error retrieving note with id ' + req.params.cashId,
+            message: "Error retrieving note with id " + req.params.cashId,
         });
     });
     
@@ -74,7 +74,7 @@ exports.update = (req, res) => {
         res.status(500).send({
             message:
                 err.message ||
-                'Some error occurred while Updating the Note.',
+                "Some error occurred while Updating the Note.",
         });
     });
 };
@@ -84,18 +84,18 @@ exports.delete = (req, res) => {
     Cash.findByIdAndDelete(req.params.cashId).then(cash => {
         if (!cash) {
             return res.status(404).send({
-                message: 'Cash not found with id ' + req.params.cashId,
+                message: "Cash not found with id " + req.params.cashId,
             });
         }
-        res.send({message: 'Note deleted successfully!'});
+        res.send({message: "Note deleted successfully!"});
     }).catch(err => {
-        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+        if (err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
-                message: 'Note not found with id ' + req.params.cashId,
+                message: "Note not found with id " + req.params.cashId,
             });
         }
         return res.status(500).send({
-            message: 'Could not delete note with id ' + req.params.cashId,
+            message: "Could not delete note with id " + req.params.cashId,
         });
     });
 };
