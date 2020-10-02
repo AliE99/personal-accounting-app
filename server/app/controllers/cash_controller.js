@@ -77,6 +77,19 @@ exports.update = (req, res) => {
                 "Some error occurred while Updating the Note.",
         });
     });
+    // const id = req.params.cashId;
+    // Cash.findOne({_id: id}, (err, data) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         if (req.body.currency) {
+    //             data.currency = req.body.currency;
+    //             res.send(data);
+    //         }
+    //         data.save();
+    //     }
+    // });
+    
 };
 
 // Delete a cash with the specified cashId in the request
