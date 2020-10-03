@@ -9,7 +9,7 @@ router.post("/", accounts.create);
 router.get("/", accounts.findAll);
 
 // Calculate the Total money stored in the bank accounts
-router.get("/total",accounts.totalAmount);
+router.get("/total", accounts.totalAmount);
 
 // Find a single account with a accountId
 router.get("/:accountId", accounts.findOne);

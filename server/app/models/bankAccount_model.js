@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const AccountSchema = mongoose.Schema(
     {
         bank_name: String,
-        number:Number,
+        number: Number,
         amount: Number,
         currency: String,
     },
@@ -11,5 +11,5 @@ const AccountSchema = mongoose.Schema(
         timestamps: true,
     });
 
-const Account = mongoose.model('account', AccountSchema);
+const Account = mongoose.model("account", AccountSchema);
 module.exports = Account;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const CashSchema = mongoose.Schema(
     {
@@ -10,5 +10,5 @@ const CashSchema = mongoose.Schema(
     },
 );
 
-const Cash = mongoose.model('cash', CashSchema);
+const Cash = mongoose.model("cash", CashSchema);
 module.exports = Cash;

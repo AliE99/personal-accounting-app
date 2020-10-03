@@ -110,6 +110,5 @@ exports.totalAmount = (req, res) => {
                 err.message ||
                 "Some error occurred while retrieving Accounts.",
         });
-    });;
+    });
 };
-
