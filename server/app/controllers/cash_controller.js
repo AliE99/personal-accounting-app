@@ -108,7 +108,7 @@ exports.delete = (req, res) => {
 };
 
 // Deposit the money
-exports.deposit = (req, res) => {
+exports.income = (req, res) => {
     const curr = req.body.currency;
     const money = req.body.money;
     Cash.findOne({currency: curr}, (err, cash) => {
@@ -118,7 +118,7 @@ exports.deposit = (req, res) => {
             cash.amount += money;
             cash.save();
             // Save the Transaction
-            transaction.SaveIncome(cash, money, res);
+            transaction.saveTransaction(cash, money, res, "income");
             
             res.send(cash);
         }
@@ -126,7 +126,7 @@ exports.deposit = (req, res) => {
 };
 
 // Spend the money
-exports.spend = (req, res) => {
+exports.expense = (req, res) => {
     const curr = req.body.currency;
     const money = req.body.money;
     Cash.findOne({currency: curr}, (err, cash) => {
@@ -136,7 +136,7 @@ exports.spend = (req, res) => {
             cash.amount -= money;
             cash.save();
             // Save the Transaction
-            transaction.SaveExpense(cash, money, res);
+            transaction.saveTransaction(cash, money, res, "expense");
             
             res.send(cash);
         }

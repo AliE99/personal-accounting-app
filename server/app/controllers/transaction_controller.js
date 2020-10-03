@@ -1,6 +1,8 @@
 const Transaction = require("../models/transaction_model");
 
-exports.SaveIncome = (data, money, res) => {
+// Save the transaction
+// Kind : income or expense
+exports.saveTransaction = (data, money, res, kind) => {
     let log = {
         amount: money,
         currency: data.currency,
@@ -11,35 +13,17 @@ exports.SaveIncome = (data, money, res) => {
         log.bank_name = data.bank_name;
         log.bank_number = data.number;
     }
-    
-    const transaction = new Transaction({
-        income: log,
-    });
-    transaction.save().then(
-    ).catch(err => {
-        res.status(500).send({
-            message:
-                err.message ||
-                "Some error occurred while creating the Transaction.",
+    let transaction;
+    if (kind === "income") {
+        transaction = new Transaction({
+            income: log,
         });
-    });
-};
-
-exports.SaveExpense = (data,money, res) => {
-    let log = {
-        amount: money,
-        currency: data.currency,
-    };
-    
-    // Check if the data coming from a bank
-    if (data.bank_name) {
-        log.bank_name = data.bank_name;
-        log.bank_number = data.number;
+    } else {
+        transaction = new Transaction({
+            expense: log,
+        });
     }
     
-    const transaction = new Transaction({
-        expense: log,
-    });
     transaction.save().then(
     ).catch(err => {
         res.status(500).send({
