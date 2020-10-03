@@ -5,6 +5,12 @@ const accounts = require("../controllers/bankAccount_controller");
 // Create and Save a new Account
 router.post("/", accounts.create);
 
+// Deposit the money
+router.post("/income", accounts.income);
+
+// Spend the money
+router.post("/expense", accounts.expense);
+
 // Retrieve and return all accounts from the database.
 router.get("/", accounts.findAll);
 

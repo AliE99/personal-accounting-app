@@ -1,5 +1,6 @@
 const Account = require("../models/bankAccount_model");
-const income = require("./transaction_controller");
+const transaction = require("./transaction_controller");
+// Create and Save a new Account
 exports.create = (req, res) => {
     // Create a new Account
     const account = new Account({
@@ -90,6 +91,50 @@ exports.delete = (req, res) => {
         }
         return res.status(500).send({
             message: "Could not delete note with id " + req.params.accountId,
+        });
+    });
+};
+
+// Deposit the money
+exports.income = (req, res) => {
+    const number = req.body.number;
+    const money = req.body.money;
+    
+    Account.findOne({number: number}).then(account => {
+        account.amount += money;
+        account.save();
+        
+        // Save the Transaction
+        transaction.saveTransaction(account, money, res, "income");
+        
+        res.send(account);
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message ||
+                "Some error occurred while Saving an income.",
+        });
+    });
+};
+
+// Spend the money
+exports.expense = (req, res) => {
+    const number = req.body.number;
+    const money = req.body.money;
+    
+    Account.findOne({number: number}).then(account => {
+        account.amount -= money;
+        account.save();
+        
+        // Save the Transaction
+        transaction.saveTransaction(account, money, res, "expense");
+        
+        res.send(account);
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message ||
+                "Some error occurred while Saving an expense.",
         });
     });
 };

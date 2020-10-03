@@ -16,7 +16,7 @@ exports.create = (req, res) => {
         res.status(500).send({
             message:
                 err.message ||
-                "Some error occurred while creating the Note.",
+                "Some error occurred while creating the Cash.",
         });
     });
     
@@ -40,18 +40,18 @@ exports.findOne = (req, res) => {
     Cash.findById(req.params.cashId).then(cash => {
         if (!cash) {
             return res.status(404).send({
-                message: "Note not found with id " + req.params.cashId,
+                message: "Cash not found with id " + req.params.cashId,
             });
         }
         res.send(cash);
     }).catch(err => {
         if (err.kind === "ObjectId") {
             return res.status(404).send({
-                message: "Note not found with id " + req.params.cashId,
+                message: "Cash not found with id " + req.params.cashId,
             });
         }
         return res.status(500).send({
-            message: "Error retrieving note with id " + req.params.cashId,
+            message: "Error retrieving Cash with id " + req.params.cashId,
         });
     });
     
@@ -68,7 +68,7 @@ exports.update = (req, res) => {
         res.status(500).send({
             message:
                 err.message ||
-                "Some error occurred while Updating the Note.",
+                "Some error occurred while Updating the Cash.",
         });
     });
     // const id = req.params.cashId;
@@ -94,15 +94,15 @@ exports.delete = (req, res) => {
                 message: "Cash not found with id " + req.params.cashId,
             });
         }
-        res.send({message: "Note deleted successfully!"});
+        res.send({message: "Cash deleted successfully!"});
     }).catch(err => {
         if (err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
-                message: "Note not found with id " + req.params.cashId,
+                message: "Cash not found with id " + req.params.cashId,
             });
         }
         return res.status(500).send({
-            message: "Could not delete note with id " + req.params.cashId,
+            message: "Could not delete Cash with id " + req.params.cashId,
         });
     });
 };
@@ -111,17 +111,21 @@ exports.delete = (req, res) => {
 exports.income = (req, res) => {
     const curr = req.body.currency;
     const money = req.body.money;
-    Cash.findOne({currency: curr}, (err, cash) => {
-        if (err) {
-            console.log(err);
-        } else {
-            cash.amount += money;
-            cash.save();
-            // Save the Transaction
-            transaction.saveTransaction(cash, money, res, "income");
-            
-            res.send(cash);
-        }
+    
+    Cash.findOne({currency: curr}).then(cash => {
+        cash.amount += money;
+        cash.save();
+        
+        // Save the Transaction
+        transaction.saveTransaction(cash, money, res, "income");
+        
+        res.send(cash);
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message ||
+                "Some error occurred while Saving an income.",
+        });
     });
 };
 
@@ -129,17 +133,21 @@ exports.income = (req, res) => {
 exports.expense = (req, res) => {
     const curr = req.body.currency;
     const money = req.body.money;
-    Cash.findOne({currency: curr}, (err, cash) => {
-        if (err) {
-            console.log(err);
-        } else {
-            cash.amount -= money;
-            cash.save();
-            // Save the Transaction
-            transaction.saveTransaction(cash, money, res, "expense");
-            
-            res.send(cash);
-        }
+    
+    Cash.findOne({currency: curr}).then(cash => {
+        cash.amount -= money;
+        cash.save();
+        
+        // Save the Transaction
+        transaction.saveTransaction(cash, money, res, "expense");
+        
+        res.send(cash);
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message ||
+                "Some error occurred while Saving an Expense.",
+        });
     });
 };
 
