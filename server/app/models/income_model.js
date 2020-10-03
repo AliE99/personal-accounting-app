@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const IncomeSchema = mongoose.Schema(
     {
-        detail: String,
+        detail: mongoose.Mixed,
     },
     {
         timestamps: true,

@@ -1,12 +1,16 @@
 const Account = require("../models/bankAccount_model");
-
+const income = require("./income_controller");
 exports.create = (req, res) => {
     // Create a new Account
     const account = new Account({
         bank_name: req.body.bank_name,
+        number: req.body.number,
         amount: req.body.amount,
         currency: req.body.currency || "rial",
     });
+    
+    // Save the Transaction
+    income.SaveIncome(account,res);
     
     // Save the account in the database
     account.save().then(data => {

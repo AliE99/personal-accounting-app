@@ -40,13 +40,13 @@ exports.findByMonth = (req, res) => {
         date = parseInt(req.params.monthId);
     }
     Account.aggregate([
-        {$addFields: {"month": {$month: "$createdAt"}}},
+        {$addFields: {"month": {$month: "$updatedAt"}}},
         {$match: {month: date}},
     ]).then(accounts => {
         assets.account = accounts;
         ////////////////////////////
         Cash.aggregate([
-            {$addFields: {"month": {$month: "$createdAt"}}},
+            {$addFields: {"month": {$month: "$updatedAt"}}},
             {$match: {month: date}},
         ]).then(cashes => {
             assets.cash = cashes;

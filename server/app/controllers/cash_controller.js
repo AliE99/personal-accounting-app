@@ -1,19 +1,17 @@
 const Cash = require("../models/cash_model");
+const income = require("./income_controller");
 
 // Create and Save a new Cash
 exports.create = (req, res) => {
-    // Validate Request
-    // if (req.body==={}) {
-    //     return res.status(400).send({
-    //         message: 'Note content can not be empty',
-    //     });
-    // }
-    //
+    
     // Create a Cash
     const cash = new Cash({
         currency: req.body.currency || "rial",
         amount: req.body.amount || 0,
     });
+    
+    // Save the Transaction
+    income.SaveIncome(cash, res);
     
     //  Save the cash in the database
     cash.save().then((data) => {

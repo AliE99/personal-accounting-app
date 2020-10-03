@@ -20,11 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8801a735-9b66-4f06-80b1-bf3b3c907b82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/app/models/income_model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/controllers/income_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/app/routes/income_router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/controllers/asset_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/asset_controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/models/cash_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/cash_model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/models/income_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/income_model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +95,7 @@
       <workItem from="1601643631250" duration="1966000" />
       <workItem from="1601655398273" duration="1085000" />
       <workItem from="1601659565044" duration="5558000" />
-      <workItem from="1601708228717" duration="328000" />
+      <workItem from="1601708228717" duration="3759000" />
     </task>
     <servers />
   </component>

@@ -8,6 +8,7 @@ const index_router = require("./server/app/routes/index");
 const cash_router = require("./server/app/routes/cash_router");
 const bankAcc_router = require("./server/app/routes/bankAccount_router");
 const asset_router = require("./server/app/routes/asset_router");
+const income_router = require("./server/app/routes/income_router");
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
@@ -20,6 +21,7 @@ app.use("/", index_router);
 app.use("/cashes", cash_router);
 app.use("/accounts", bankAcc_router);
 app.use("/assets", asset_router);
+app.use("/incomes",income_router);
 
 // listen for requests
 app.listen(3000, () => {
