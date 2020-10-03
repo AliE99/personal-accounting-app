@@ -9,8 +9,6 @@ exports.create = (req, res) => {
         currency: req.body.currency || "rial",
     });
     
-    // Save the Transaction
-    income.SaveIncome(account,res);
     
     // Save the account in the database
     account.save().then(data => {

@@ -5,6 +5,9 @@ const cashes = require("../controllers/cash_controller");
 // Create and Save a new Cash
 router.post("/", cashes.create);
 
+// Deposit the money
+router.post("/deposit",cashes.deposit);
+
 // Retrieve and return all cashes from the database.
 router.get("/", cashes.findAll);
 

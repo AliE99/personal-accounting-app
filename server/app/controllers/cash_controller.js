@@ -1,17 +1,13 @@
 const Cash = require("../models/cash_model");
-const income = require("./transaction_controller");
+const transaction = require("./transaction_controller");
 
 // Create and Save a new Cash
 exports.create = (req, res) => {
-    
     // Create a Cash
     const cash = new Cash({
         currency: req.body.currency || "rial",
         amount: req.body.amount || 0,
     });
-    
-    // Save the Transaction
-    income.SaveIncome(cash, res);
     
     //  Save the cash in the database
     cash.save().then((data) => {
@@ -108,6 +104,25 @@ exports.delete = (req, res) => {
         return res.status(500).send({
             message: "Could not delete note with id " + req.params.cashId,
         });
+    });
+};
+
+// Deposit the money
+exports.deposit = (req, res) => {
+    const curr = req.body.currency;
+    const money = req.body.money;
+    Cash.findOne({currency: curr}, (err, cash) => {
+        if (err) {
+            console.log(err);
+        } else {
+            cash.amount += money;
+            cash.save();
+    
+            // Save the Transaction
+            transaction.SaveIncome(cash,money, res);
+            
+            res.send(cash);
+        }
     });
 };
 
