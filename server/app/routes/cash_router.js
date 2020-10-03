@@ -6,13 +6,16 @@ const cashes = require("../controllers/cash_controller");
 router.post("/", cashes.create);
 
 // Deposit the money
-router.post("/deposit",cashes.deposit);
+router.post("/deposit", cashes.deposit);
+
+// Spend the money
+router.post("/spend", cashes.spend);
 
 // Retrieve and return all cashes from the database.
 router.get("/", cashes.findAll);
 
 // Calculate the Total money stored as cash
-router.get("/total",cashes.totalAmount);
+router.get("/total", cashes.totalAmount);
 
 // Find a single cash with a cashId
 router.get("/:cashId", cashes.findOne);

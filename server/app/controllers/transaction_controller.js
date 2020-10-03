@@ -11,6 +11,7 @@ exports.SaveIncome = (data, money, res) => {
         log.bank_name = data.bank_name;
         log.bank_number = data.number;
     }
+    
     const transaction = new Transaction({
         income: log,
     });
@@ -24,13 +25,23 @@ exports.SaveIncome = (data, money, res) => {
     });
 };
 
-exports.SaveExpense = (data, res) => {
+exports.SaveExpense = (data,money, res) => {
+    let log = {
+        amount: money,
+        currency: data.currency,
+    };
+    
+    // Check if the data coming from a bank
+    if (data.bank_name) {
+        log.bank_name = data.bank_name;
+        log.bank_number = data.number;
+    }
+    
     const transaction = new Transaction({
-        expense: data,
+        expense: log,
     });
-    transaction.save().then(transaction => {
-        console.log(transaction);
-    }).catch(err => {
+    transaction.save().then(
+    ).catch(err => {
         res.status(500).send({
             message:
                 err.message ||

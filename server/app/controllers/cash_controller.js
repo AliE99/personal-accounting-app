@@ -117,9 +117,26 @@ exports.deposit = (req, res) => {
         } else {
             cash.amount += money;
             cash.save();
-    
             // Save the Transaction
-            transaction.SaveIncome(cash,money, res);
+            transaction.SaveIncome(cash, money, res);
+            
+            res.send(cash);
+        }
+    });
+};
+
+// Spend the money
+exports.spend = (req, res) => {
+    const curr = req.body.currency;
+    const money = req.body.money;
+    Cash.findOne({currency: curr}, (err, cash) => {
+        if (err) {
+            console.log(err);
+        } else {
+            cash.amount -= money;
+            cash.save();
+            // Save the Transaction
+            transaction.SaveExpense(cash, money, res);
             
             res.send(cash);
         }
