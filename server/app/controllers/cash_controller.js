@@ -1,5 +1,5 @@
 const Cash = require("../models/cash_model");
-const income = require("./income_controller");
+const income = require("./transaction_controller");
 
 // Create and Save a new Cash
 exports.create = (req, res) => {

@@ -1,5 +1,5 @@
 const Account = require("../models/bankAccount_model");
-const income = require("./income_controller");
+const income = require("./transaction_controller");
 exports.create = (req, res) => {
     // Create a new Account
     const account = new Account({
