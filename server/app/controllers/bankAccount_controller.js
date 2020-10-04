@@ -98,7 +98,7 @@ exports.delete = (req, res) => {
 // Deposit the money
 exports.income = (req, res) => {
     const number = req.body.number;
-    const money = req.body.money;
+    const money = req.body.amount;
     
     Account.findOne({number: number}).then(account => {
         account.amount += money;
@@ -120,7 +120,7 @@ exports.income = (req, res) => {
 // Spend the money
 exports.expense = (req, res) => {
     const number = req.body.number;
-    const money = req.body.money;
+    const money = req.body.amount;
     
     Account.findOne({number: number}).then(account => {
         account.amount -= money;

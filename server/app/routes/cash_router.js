@@ -3,13 +3,13 @@ const router = express.Router();
 const cashes = require("../controllers/cash_controller");
 
 // Create and Save a new Cash
-router.post("/", cashes.validate("create"),cashes.create);
+router.post("/", cashes.validate(),cashes.create);
 
 // Deposit the money
-router.post("/income", cashes.income);
+router.post("/income",cashes.validate(), cashes.income);
 
 // Spend the money
-router.post("/expense", cashes.expense);
+router.post("/expense",cashes.validate(), cashes.expense);
 
 // Retrieve and return all cashes from the database.
 router.get("/", cashes.findAll);
