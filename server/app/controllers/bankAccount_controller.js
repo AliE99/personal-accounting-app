@@ -186,5 +186,15 @@ exports.validate = (method) => {
                     exists(),
             ];
         }
+        case "incomeAndExpense": {
+            return [
+                body("number", "Enter a Valid 16 digits Account Number").
+                    isLength({min: 16, max: 16}).isInt().exists(),
+                
+                body("amount", "Amount of money should be a Valid Integer !").
+                    isInt().
+                    exists(),
+            ];
+        }
     }
 };
