@@ -1,7 +1,14 @@
 const Account = require("../models/bankAccount_model");
 const transaction = require("./transaction_controller");
+const {body, validationResult} = require("express-validator");
+
 // Create and Save a new Account
 exports.create = (req, res) => {
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
     // Create a new Account
     const account = new Account({
         bank_name: req.body.bank_name,
@@ -9,7 +16,6 @@ exports.create = (req, res) => {
         amount: req.body.amount,
         currency: req.body.currency || "rial",
     });
-    
     
     // Save the account in the database
     account.save().then(data => {
@@ -158,4 +164,27 @@ exports.totalAmount = (req, res) => {
                 "Some error occurred while retrieving Accounts.",
         });
     });
+};
+
+// Validate bank account
+exports.validate = (method) => {
+    switch (method) {
+        case "create": {
+            return [
+                body("bank_name", "Enter a Valid String for Bank Name !").
+                    isString().
+                    exists(),
+                body("number", "Enter a Valid 16 digits Account Number").
+                    isLength({min: 16, max: 16}).isInt().exists(),
+                body("currency",
+                    "Enter a Valid Currency(choices : rial, dollar and euro) ! ").
+                    optional().
+                    isIn(["rial", "dollar", "euro"]),
+                
+                body("amount", "Amount of money should be a Valid Integer !").
+                    isInt().
+                    exists(),
+            ];
+        }
+    }
 };

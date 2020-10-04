@@ -181,7 +181,7 @@ exports.totalAmount = (req, res) => {
 
 // Validations
 
-//Validating methods for  Cash
+//Validating methods for Cash
 exports.validate = () => {
     return [
         body("currency",

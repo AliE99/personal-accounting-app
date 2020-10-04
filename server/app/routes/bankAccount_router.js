@@ -3,7 +3,7 @@ const router = express.Router();
 const accounts = require("../controllers/bankAccount_controller");
 
 // Create and Save a new Account
-router.post("/", accounts.create);
+router.post("/", accounts.validate("create"), accounts.create);
 
 // Deposit the money
 router.post("/income", accounts.income);
@@ -25,7 +25,5 @@ router.put("/:accountId", accounts.update);
 
 // Delete a account with the specified accountId in the request
 router.delete("/:accountId", accounts.delete);
-
-
 
 module.exports = router;
