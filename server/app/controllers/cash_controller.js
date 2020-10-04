@@ -1,8 +1,15 @@
 const Cash = require("../models/cash_model");
 const transaction = require("./transaction_controller");
+const {body, validationResult} = require("express-validator");
 
 // Create and Save a new Cash
 exports.create = (req, res) => {
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    
     // Create a Cash
     const cash = new Cash({
         currency: req.body.currency || "rial",
@@ -170,4 +177,24 @@ exports.totalAmount = (req, res) => {
                 "Some error occurred while retrieving Cashes.",
         });
     });
+};
+
+// Validations
+
+//Validating methods for  Cash
+exports.validate = (method) => {
+    switch (method) {
+        case "create": {
+            return [
+                body("currency", "Enter a Valid Currency(choices : rial, dollar and euro) ! ").
+                    exists().
+                    isIn(["rial", "dollar", "euro"]),
+                
+                body("amount", "Amount of money should be a Valid Integer !").
+                    isInt().
+                    exists(),
+            ];
+        }
+        
+    }
 };

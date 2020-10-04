@@ -3,7 +3,7 @@ const router = express.Router();
 const cashes = require("../controllers/cash_controller");
 
 // Create and Save a new Cash
-router.post("/", cashes.create);
+router.post("/", cashes.validate("create"),cashes.create);
 
 // Deposit the money
 router.post("/income", cashes.income);
