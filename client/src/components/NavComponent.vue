@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
+  <div class="container">
+    <b-navbar toggleable="lg" type="dark" variant="dark" dir="rtl" fixed="top">
       <b-navbar-brand href="#">حسابداری شخصی</b-navbar-brand>
 
       <b-collapse id="nav-collapse" is-nav>

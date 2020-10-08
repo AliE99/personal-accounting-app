@@ -1,14 +1,13 @@
 <template>
-  <div class="container">
-    <h1>Latest Assets</h1>
+  <div class="container mt-5">
     <hr>
     <p v-if="error">{{ error }}</p>
     <div class="assets-container">
       <h3>Accounts :</h3>
-      <b-table hover :items="accounts" :fields="['bank_name', 'amount', 'currency']"></b-table>
+      <b-table hover :items="accounts" :fields="['bank_name', 'amount', 'currency']" head-variant="dark" striped></b-table>
       <hr>
       <h3>Cashes :</h3>
-      <b-table hover :items="cashes" :fields="['amount', 'currency']"></b-table>
+      <b-table hover :items="cashes" :fields="['amount', 'currency']" head-variant="dark" striped></b-table>
       <hr>
     </div>
   </div>
