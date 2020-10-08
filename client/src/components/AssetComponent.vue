@@ -5,16 +5,11 @@
     <p v-if="error">{{ error }}</p>
     <div class="assets-container">
       <h3>Accounts :</h3>
-      <div class="account" v-for="account in accounts" v-bind:item="account" :key="account._id">
-        <p>{{ account.bank_name }} : {{ account.amount }} {{ account.currency }}</p>
-      </div>
+      <b-table hover :items="accounts" :fields="['bank_name', 'amount', 'currency']"></b-table>
       <hr>
       <h3>Cashes :</h3>
-      <div class="cash" v-for="cash in cashes" v-bind:item="cash" :key="cash._id">
-        <p>{{ cash.amount }} {{ cash.currency }}</p>
-      </div>
+      <b-table hover :items="cashes" :fields="['amount', 'currency']"></b-table>
       <hr>
-
     </div>
   </div>
 </template>
@@ -28,6 +23,7 @@ export default {
   data() {
     return {
       accounts: {},
+      accItem: [],
       cashes: {},
       error: "",
     };

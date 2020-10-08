@@ -1,18 +1,31 @@
 <template>
   <div id="app">
-    <AssetComponent></AssetComponent>
+    <NavComponent :callback="changeThePage"></NavComponent>
+    <AssetComponent v-if="currentPage==='assets'"></AssetComponent>
   </div>
 </template>
 
 <script>
-import AssetComponent from './components/AssetComponent.vue'
+import AssetComponent from "./components/AssetComponent";
+import NavComponent from "./components/NavComponent";
 
 export default {
-  name: 'App',
+  name: "App",
+  data: function() {
+    return {
+      currentPage: "assets",
+    };
+  },
   components: {
-    AssetComponent: AssetComponent
-  }
-}
+    AssetComponent: AssetComponent,
+    NavComponent: NavComponent,
+  },
+  methods: {
+    changeThePage(page) {
+      this.currentPage = page;
+    },
+  },
+};
 </script>
 
 <style>
