@@ -187,7 +187,7 @@ exports.validate = () => {
         body("currency",
             "Enter a Valid Currency(choices : rial, dollar and euro) ! ").
             exists().
-            isIn(["rial", "dollar", "euro"]),
+            isIn(["rial", "dollar", "euro", "dinar"]),
         
         body("amount", "Amount of money should be a Valid Integer !").
             isInt().

@@ -3,7 +3,7 @@
     <hr>
     <p v-if="error">{{ error }}</p>
     <div class="assets-container">
-      <h3>Accounts :</h3>
+      <h3 class="mt-5">Accounts :</h3>
       <b-table hover :items="accounts" :fields="['bank_name', 'amount', 'currency']" head-variant="dark"
                striped></b-table>
       <hr>
@@ -12,7 +12,7 @@
       <hr>
     </div>
     <div class="container">
-      <b-button @click="changeThePage('createAsset')" block pill variant="outline-primary" >ایجاد یک دارایی جدید</b-button>
+      <b-button  @click="changeThePage('createAsset')" block pill variant="outline-primary" >ایجاد یک دارایی جدید</b-button>
     </div>
   </div>
 </template>

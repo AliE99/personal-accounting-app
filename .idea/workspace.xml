@@ -20,11 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8801a735-9b66-4f06-80b1-bf3b3c907b82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/CreateAssetComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/AssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AssetComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NavComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/NavComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/CreateAssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CreateAssetComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/models/bankAccount_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/bankAccount_model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +108,9 @@
       <workItem from="1602159245627" duration="2222000" />
       <workItem from="1602162517110" duration="6703000" />
       <workItem from="1602169244595" duration="2479000" />
-      <workItem from="1602171831265" duration="1470000" />
+      <workItem from="1602171831265" duration="1682000" />
+      <workItem from="1602184641574" duration="2561000" />
+      <workItem from="1602187222838" duration="2680000" />
     </task>
     <servers />
   </component>

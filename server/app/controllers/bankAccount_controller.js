@@ -12,7 +12,7 @@ exports.create = (req, res) => {
     // Create a new Account
     const account = new Account({
         bank_name: req.body.bank_name,
-        number: req.body.number,
+        bank_number: req.body.bank_number,
         amount: req.body.amount,
         currency: req.body.currency || "rial",
     });
@@ -174,12 +174,12 @@ exports.validate = (method) => {
                 body("bank_name", "Enter a Valid String for Bank Name !").
                     isString().
                     exists(),
-                body("number", "Enter a Valid 16 digits Account Number").
+                body("bank_number", "Enter a Valid 16 digits Account Number").
                     isLength({min: 16, max: 16}).isInt().exists(),
                 body("currency",
                     "Enter a Valid Currency(choices : rial, dollar and euro) ! ").
                     optional().
-                    isIn(["rial", "dollar", "euro"]),
+                    isIn(["rial", "dollar", "euro", "dinar"]),
                 
                 body("amount", "Amount of money should be a Valid Integer !").
                     isInt().

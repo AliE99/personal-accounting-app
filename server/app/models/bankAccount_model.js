@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const AccountSchema = mongoose.Schema(
     {
         bank_name: String,
-        number: Number,
+        bank_number: Number,
         amount: Number,
         currency: String,
     },
