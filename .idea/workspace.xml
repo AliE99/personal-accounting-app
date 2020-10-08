@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8801a735-9b66-4f06-80b1-bf3b3c907b82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/components/CreateAssetComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/AssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AssetComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/NavComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/NavComponent.vue" afterDir="false" />
     </list>
@@ -104,7 +106,8 @@
       <workItem from="1602083827003" duration="432000" />
       <workItem from="1602159245627" duration="2222000" />
       <workItem from="1602162517110" duration="6703000" />
-      <workItem from="1602169244595" duration="370000" />
+      <workItem from="1602169244595" duration="2479000" />
+      <workItem from="1602171831265" duration="1470000" />
     </task>
     <servers />
   </component>

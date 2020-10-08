@@ -1,13 +1,16 @@
 <template>
   <div id="app">
     <NavComponent :callback="changeThePage"></NavComponent>
-    <AssetComponent v-if="currentPage==='assets'"></AssetComponent>
+    <hr>
+    <AssetComponent :callback="changeThePage" v-if="currentPage==='assets'"></AssetComponent>
+    <CreateAssetComponent v-if="currentPage==='createAsset'"></CreateAssetComponent>
   </div>
 </template>
 
 <script>
 import AssetComponent from "./components/AssetComponent";
 import NavComponent from "./components/NavComponent";
+import CreateAssetComponent from "./components/CreateAssetComponent";
 
 export default {
   name: "App",
@@ -19,6 +22,7 @@ export default {
   components: {
     AssetComponent: AssetComponent,
     NavComponent: NavComponent,
+    CreateAssetComponent:CreateAssetComponent,
   },
   methods: {
     changeThePage(page) {
