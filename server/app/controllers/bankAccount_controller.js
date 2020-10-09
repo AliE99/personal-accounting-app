@@ -12,7 +12,7 @@ exports.create = (req, res) => {
     // Create a new Account
     const account = new Account({
         bank_name: req.body.bank_name,
-        bank_number: req.body.bank_number,
+        account_number: req.body.account_number,
         amount: req.body.amount,
         currency: req.body.currency || "rial",
     });
@@ -103,10 +103,10 @@ exports.delete = (req, res) => {
 
 // Deposit the money
 exports.income = (req, res) => {
-    const number = req.body.number;
+    const number = req.body.account_number;
     const money = req.body.amount;
     
-    Account.findOne({number: number}).then(account => {
+    Account.findOne({account_number: number}).then(account => {
         account.amount += money;
         account.save();
         
@@ -125,10 +125,10 @@ exports.income = (req, res) => {
 
 // Spend the money
 exports.expense = (req, res) => {
-    const number = req.body.number;
+    const number = req.body.account_number;
     const money = req.body.amount;
     
-    Account.findOne({number: number}).then(account => {
+    Account.findOne({account_number: number}).then(account => {
         account.amount -= money;
         account.save();
         
@@ -174,7 +174,7 @@ exports.validate = (method) => {
                 body("bank_name", "Enter a Valid String for Bank Name !").
                     isString().
                     exists(),
-                body("bank_number", "Enter a Valid 16 digits Account Number").
+                body("account_number", "Enter a Valid 16 digits Account Number").
                     isLength({min: 16, max: 16}).isInt().exists(),
                 body("currency",
                     "Enter a Valid Currency(choices : rial, dollar and euro) ! ").
@@ -188,7 +188,7 @@ exports.validate = (method) => {
         }
         case "incomeAndExpense": {
             return [
-                body("number", "Enter a Valid 16 digits Account Number").
+                body("account_number", "Enter a Valid 16 digits Account Number").
                     isLength({min: 16, max: 16}).isInt().exists(),
                 
                 body("amount", "Amount of money should be a Valid Integer !").

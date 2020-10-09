@@ -43,7 +43,7 @@
         >
           <b-form-input
               id="input-2"
-              v-model="account.bank_number"
+              v-model="account.account_number"
               type="number"
               required
               placeholder="Enter Your Bank Number"
@@ -67,14 +67,6 @@
               placeholder="Enter Your Amount of Money"
           ></b-form-input>
         </b-form-group>
-
-<!--        <b-form-group label="واحد پول">-->
-<!--          <b-form-radio v-model="account.currency" name="rial" value="rial">ریال</b-form-radio>-->
-<!--          <b-form-radio v-model="account.currency" name="dollar" value="dollar">دلار</b-form-radio>-->
-<!--          <b-form-radio v-model="account.currency" name="euro" value="euro">یورو</b-form-radio>-->
-<!--          <b-form-radio v-model="account.currency" name="dinar" value="dinar">دینار</b-form-radio>-->
-<!--        </b-form-group>-->
-
 
       </div>
 
@@ -121,12 +113,14 @@ export default {
       alertKind: "",
       alertMsg: "",
 
+      // Account model
       account: {
         bank_name: "",
-        bank_number: 0,
+        account_number: 0,
         amount: null,
       },
 
+      // Cash model
       cash: {
         amount: null,
         currency: "",
@@ -135,10 +129,11 @@ export default {
     };
   },
   methods: {
+
+    // Submit the forms and send them to the database
     onSubmit(evt) {
       evt.preventDefault();
       if (this.selected === "cash") {
-        console.log(this.cash)
         axios.post("http://localhost:3000/cashes", this.cash).then(() => {
           this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
         }).catch(err => {
@@ -146,7 +141,6 @@ export default {
           alert(err);
         });
       } else {
-        console.log(this.account);
         axios.post("http://localhost:3000/accounts", this.account).then(() => {
           this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
         }).catch(err => {
@@ -154,12 +148,13 @@ export default {
           alert(err);
         });
       }
-
     },
+
+    // Reset the fields
     onReset(evt) {
       evt.preventDefault();
       this.account.bank_name = "";
-      this.account.bank_number = 0;
+      this.account.account_number = 0;
       this.account.amount = null;
       this.account.currency = "";
       this.cash.amount = null;
@@ -179,7 +174,7 @@ export default {
   computed: {
     // validate bank account number
     validation() {
-      return this.account.bank_number.toString().length === 16;
+      return this.account.account_number.toString().length === 16;
     },
   },
 };
