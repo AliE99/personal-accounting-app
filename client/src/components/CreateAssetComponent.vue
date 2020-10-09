@@ -6,7 +6,8 @@
                   label="نوع دارایی خود را انتخاب کنید"
                   label-for="input-0"
     >
-      <b-form-select class="mb-3 mt-5" id="input-0" v-model="selected" :options="['account','cash']"></b-form-select>
+      <b-form-select class="container mb-3 mt-5" id="input-0" v-model="selected"
+                     :options="['account','cash']"></b-form-select>
 
       <b-alert
           :show="dismissCountDown"
@@ -72,10 +73,10 @@
 
       <div class="make-cash" v-if="selected==='cash'">
 
-        <b-form-group
-            id="input-group-5"
-            label="مقدار"
-            label-for="input-5"
+        <b-form-group class="container "
+                      id="input-group-5"
+                      label="مقدار"
+                      label-for="input-5"
         >
           <b-form-input
               id="input-5"
@@ -86,7 +87,7 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group label="واحد پول">
+        <b-form-group label="واحد پول" class="container">
           <b-form-radio v-model="cash.currency" name="rial" value="rial">ریال</b-form-radio>
           <b-form-radio v-model="cash.currency" name="dollar" value="dollar">دلار</b-form-radio>
           <b-form-radio v-model="cash.currency" name="euro" value="euro">یورو</b-form-radio>
@@ -95,8 +96,9 @@
 
       </div>
 
-      <b-button v-show="selected" type="submit" variant="primary">افزودن</b-button>
-      <b-button v-show="selected" type="reset" variant="danger">دوباره</b-button>
+      <b-button class="btn-lg btn-block" pill v-show="selected" variant="outline-primary">افزودن</b-button>
+      <b-button class="btn-lg btn-block" pill v-show="selected" type="reset" variant="outline-warning">دوباره</b-button>
+
     </b-form>
   </div>
 </template>
