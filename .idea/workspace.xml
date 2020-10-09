@@ -21,9 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8801a735-9b66-4f06-80b1-bf3b3c907b82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/CreateAssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CreateAssetComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/models/bankAccount_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/bankAccount_model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +107,8 @@
       <workItem from="1602171831265" duration="1682000" />
       <workItem from="1602184641574" duration="2561000" />
       <workItem from="1602187222838" duration="2825000" />
-      <workItem from="1602236204941" duration="424000" />
+      <workItem from="1602236204941" duration="4376000" />
+      <workItem from="1602242827554" duration="963000" />
     </task>
     <servers />
   </component>
