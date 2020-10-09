@@ -4,7 +4,7 @@
     <p v-if="error">{{ error }}</p>
     <div class="assets-container">
       <h3 class="mt-5">Accounts :</h3>
-      <b-table hover :items="accounts" :fields="['bank_name', 'amount', 'currency']" head-variant="dark"
+      <b-table hover :items="accounts" :fields="['bank_name','account_number', 'amount', 'currency']" head-variant="dark"
                striped></b-table>
       <hr>
       <h3>Cashes :</h3>

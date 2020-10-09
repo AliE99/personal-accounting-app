@@ -9,24 +9,44 @@ exports.create = (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({errors: errors.array()});
     }
-    // Create a new Account
-    const account = new Account({
-        bank_name: req.body.bank_name,
-        account_number: req.body.account_number,
-        amount: req.body.amount,
-        currency: req.body.currency || "rial",
+    
+    // Check if the account already exists in the database
+    Account.findOne({account_number: req.body.account_number}).then(data => {
+        
+        // If doesn't exist => Create a new one
+        if (!data) {
+            // Create a new Account
+            const account = new Account({
+                bank_name: req.body.bank_name,
+                account_number: req.body.account_number,
+                amount: req.body.amount,
+                currency: req.body.currency || "rial",
+            });
+            
+            // Save the account in the database
+            account.save().then(data => {
+                res.send(data);
+            }).catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message ||
+                        "Some error occurred while creating the Note.",
+                });
+            });
+        }
+        
+        // If exists => Update it
+        else {
+            data.amount += parseInt(req.body.amount);
+            data.save();
+    
+            // Save the Transaction
+            transaction.saveTransaction(data, req.body.amount, res, "income");
+    
+            res.send(data);
+        }
     });
     
-    // Save the account in the database
-    account.save().then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message:
-                err.message ||
-                "Some error occurred while creating the Note.",
-        });
-    });
 };
 
 // Retrieve and return all accounts from the database.
@@ -174,7 +194,8 @@ exports.validate = (method) => {
                 body("bank_name", "Enter a Valid String for Bank Name !").
                     isString().
                     exists(),
-                body("account_number", "Enter a Valid 16 digits Account Number").
+                body("account_number",
+                    "Enter a Valid 16 digits Account Number").
                     isLength({min: 16, max: 16}).isInt().exists(),
                 body("currency",
                     "Enter a Valid Currency(choices : rial, dollar and euro) ! ").
@@ -188,7 +209,8 @@ exports.validate = (method) => {
         }
         case "incomeAndExpense": {
             return [
-                body("account_number", "Enter a Valid 16 digits Account Number").
+                body("account_number",
+                    "Enter a Valid 16 digits Account Number").
                     isLength({min: 16, max: 16}).isInt().exists(),
                 
                 body("amount", "Amount of money should be a Valid Integer !").
