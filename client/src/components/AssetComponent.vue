@@ -3,22 +3,13 @@
     <hr>
     <p v-if="error">{{ error }}</p>
     <div class="assets-container">
-      <h3 class="mt-5">Accounts :</h3>
-      <b-table hover :items="accounts"  head-variant="dark"
-               striped :fields="accountFields"
-               :sort-by.sync="sortAccountBy"
-               :sort-desc.sync="sortDesc"
-               sort-icon-left></b-table>
-      <hr>
-      <h3>Cashes :</h3>
-      <b-table hover :items="cashes"  head-variant="dark" striped :fields="cashFields"
-               :sort-by.sync="sortCashBy"
-               :sort-desc.sync="sortDesc"
-               sort-icon-left></b-table>
+      <BankAccountComponent :accountData="accounts"></BankAccountComponent>
+      <CashComponent :cashData="cashes"></CashComponent>
       <hr>
     </div>
     <div class="container">
-      <b-button  @click="changeThePage('createAsset')" block pill variant="outline-primary" >ایجاد یک دارایی جدید</b-button>
+      <b-button @click="changeThePage('createAsset')" block pill variant="outline-primary">ایجاد یک دارایی جدید
+      </b-button>
     </div>
   </div>
 </template>
@@ -26,32 +17,17 @@
 <script>
 
 import getAssets from "../services/AssetService";
+import BankAccountComponent from "@/components/BankAccountComponent";
+import CashComponent from "@/components/CashComponent";
 
 export default {
   name: "AssetComponent",
+  components: {CashComponent, BankAccountComponent},
   data() {
     return {
       accounts: {},
-      accItem: [],
       cashes: {},
       error: "",
-
-      // Sorting Account table
-      sortAccountBy: 'bank_name',
-      sortDesc: false,
-      accountFields: [
-        { key: 'bank_name', sortable: true },
-        { key: 'account_number', sortable: true },
-        { key: 'amount', sortable: true },
-        { key: 'currency', sortable: false }
-      ],
-
-      // Sorting Cash Table
-      sortCashBy: 'amount',
-      cashFields: [
-        { key: 'amount', sortable: true },
-        { key: 'currency', sortable: false }
-      ],
     };
   },
   props: {
