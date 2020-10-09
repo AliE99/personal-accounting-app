@@ -11,14 +11,15 @@ export default {
   name: "TransactionComponent",
   data() {
     return {
-      transaction: {},
-      income:{},
+      transaction: {
+        income:{},
+        expense:{},
+      },
     };
   },
   mounted() {
     axios.get("http://localhost:3000/transactions").then(transaction => {
       this.transaction = transaction.data;
-      alert(this.transaction.income);
     }).catch(err => {
       alert(err);
     });

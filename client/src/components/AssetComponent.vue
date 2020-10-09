@@ -4,11 +4,17 @@
     <p v-if="error">{{ error }}</p>
     <div class="assets-container">
       <h3 class="mt-5">Accounts :</h3>
-      <b-table hover :items="accounts" :fields="['bank_name','account_number', 'amount', 'currency']" head-variant="dark"
-               striped></b-table>
+      <b-table hover :items="accounts"  head-variant="dark"
+               striped :fields="accountFields"
+               :sort-by.sync="sortAccountBy"
+               :sort-desc.sync="sortDesc"
+               sort-icon-left></b-table>
       <hr>
       <h3>Cashes :</h3>
-      <b-table hover :items="cashes" :fields="['amount', 'currency']" head-variant="dark" striped></b-table>
+      <b-table hover :items="cashes"  head-variant="dark" striped :fields="cashFields"
+               :sort-by.sync="sortCashBy"
+               :sort-desc.sync="sortDesc"
+               sort-icon-left></b-table>
       <hr>
     </div>
     <div class="container">
@@ -29,6 +35,23 @@ export default {
       accItem: [],
       cashes: {},
       error: "",
+
+      // Sorting Account table
+      sortAccountBy: 'bank_name',
+      sortDesc: false,
+      accountFields: [
+        { key: 'bank_name', sortable: true },
+        { key: 'account_number', sortable: true },
+        { key: 'amount', sortable: true },
+        { key: 'currency', sortable: false }
+      ],
+
+      // Sorting Cash Table
+      sortCashBy: 'amount',
+      cashFields: [
+        { key: 'amount', sortable: true },
+        { key: 'currency', sortable: false }
+      ],
     };
   },
   props: {
@@ -44,6 +67,7 @@ export default {
     }).catch(err => {
       console.log(`Error : ${err}`);
     });
+
   },
   methods: {
     changeThePage(page) {

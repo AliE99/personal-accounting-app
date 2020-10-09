@@ -171,8 +171,8 @@ exports.totalAmount = (req, res) => {
         {
             $group:
                 {
-                    _id: "Total Amount",
-                    totalMoney: {$sum: "$amount"},
+                    _id: null,
+                    total_amount: {$sum: "$amount"},
                 },
         },
     ]).then(data => {
