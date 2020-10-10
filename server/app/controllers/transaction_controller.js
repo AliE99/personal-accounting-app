@@ -7,7 +7,7 @@ exports.saveTransaction = (data, money, res, kind) => {
     let source = "";
     // Check if the data coming from a bank
     if (data.bank_name) {
-        source = data.bank_name;
+        source = data.bank_name + data.account_number;
     } else {
         source = `Cash, ${data.currency}`;
     }

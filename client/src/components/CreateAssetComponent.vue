@@ -105,6 +105,7 @@
 const axios = require("axios");
 export default {
   name: "CreateAssetComponent",
+
   data() {
     return {
       selected: "",
@@ -125,6 +126,7 @@ export default {
       },
     };
   },
+
   methods: {
     // Submit the forms and send them to the database
     onSubmit(evt) {
@@ -165,6 +167,7 @@ export default {
       this.dismissCountDown = this.dismissSecs;
     },
   },
+
   computed: {
     // validate bank account number
     validation() {
