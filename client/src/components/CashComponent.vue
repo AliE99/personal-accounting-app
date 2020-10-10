@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h3>Cashes :</h3>
-    <b-table hover :items="this.cashData" head-variant="dark" striped :fields="cashFields"
+    <b-table hover :items="this.cashData" head-variant="dark" striped :fields="cashFields" responsive="sm"
              :sort-by.sync="sortCashBy"
              :sort-desc.sync="sortDesc"
              sort-icon-left></b-table>

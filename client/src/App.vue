@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <NavComponent :callback="changeThePage"></NavComponent>
-    <hr>
     <AssetComponent :callback="changeThePage" v-if="currentPage==='assets'"></AssetComponent>
     <CreateAssetComponent v-if="currentPage==='createAsset'"></CreateAssetComponent>
     <TransactionComponent v-if="currentPage==='trans'"></TransactionComponent>

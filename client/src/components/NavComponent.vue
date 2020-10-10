@@ -1,17 +1,22 @@
 <template>
   <div class="container">
-    <b-navbar toggleable="lg" type="dark" variant="dark" dir="rtl" fixed="top">
-      <b-navbar-brand class="mr-5" href="#">حسابداری شخصی</b-navbar-brand>
+    <b-navbar toggleable type="dark" variant="dark">
+      <b-navbar-brand href="#">حسابداری شخصی</b-navbar-brand>
 
-      <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-toggle target="navbar-toggle-collapse">
+        <template v-slot:default="{ expanded }">
+          <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+          <b-icon v-else icon="chevron-bar-down"></b-icon>
+        </template>
+      </b-navbar-toggle>
+
+      <b-collapse id="navbar-toggle-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item href="#" @click="changeThePage('assets')">لیست دارایی ها</b-nav-item>
+          <b-nav-item href="#" @click="changeThePage('trans')">لیست دخل و خرج</b-nav-item>
+          <b-nav-item href="#" disabled>Disabled</b-nav-item>
+        </b-navbar-nav>
       </b-collapse>
-
-      <b-nav-item-dropdown class="ml-5" text="MENU" left>
-        <b-dropdown-item href="#" @click="changeThePage('assets')">دارایی ها</b-dropdown-item>
-        <b-dropdown-item href="#" @click="changeThePage('trans')">دخل و خرج</b-dropdown-item>
-
-      </b-nav-item-dropdown>
-
     </b-navbar>
   </div>
 </template>

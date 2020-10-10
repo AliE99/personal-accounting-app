@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <b-table :items="this.accountData" :fields="accountFields" striped responsive="sm">
+  <div class="container">
+    <h3 >Accounts :</h3>
+    <b-table :items="this.accountData" :fields="accountFields" striped responsive="sm" head-variant="dark">
       <template v-slot:cell(show_details)="row">
-        <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+        <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
           {{ row.detailsShowing ? "Hide" : "Show" }} Details
         </b-button>
-
       </template>
 
       <template v-slot:row-details="row">

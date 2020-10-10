@@ -2,7 +2,7 @@
   <div class="container mt-5">
     <hr>
     <p v-if="error">{{ error }}</p>
-    <div class="assets-container">
+    <div class="container mt-5">
       <BankAccountComponent :accountData="accounts"></BankAccountComponent>
       <CashComponent :cashData="cashes"></CashComponent>
       <hr>
