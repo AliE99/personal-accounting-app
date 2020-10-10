@@ -30,7 +30,7 @@ export default {
   },
   props: {
     accountData: {
-      type: Object,
+      type: Array,
     },
   },
 };

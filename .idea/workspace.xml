@@ -20,10 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8801a735-9b66-4f06-80b1-bf3b3c907b82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/CashComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AssetComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/BankAccountComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BankAccountComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/CashComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CashComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/controllers/transaction_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/transaction_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/models/transaction_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/transaction_model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +113,10 @@
       <workItem from="1602187222838" duration="2825000" />
       <workItem from="1602236204941" duration="4376000" />
       <workItem from="1602242827554" duration="4364000" />
-      <workItem from="1602253486945" duration="3144000" />
+      <workItem from="1602253486945" duration="5928000" />
+      <workItem from="1602312073643" duration="1931000" />
+      <workItem from="1602314021256" duration="99000" />
+      <workItem from="1602314143025" duration="1325000" />
     </task>
     <servers />
   </component>
@@ -138,10 +143,11 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="454" y="211" width="1084" height="710" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1601460570182" />
-    <state x="172" y="127" width="1648" height="853" key="DiffContextDialog" timestamp="1601749087767">
-      <screen x="72" y="27" width="1848" height="1053" />
+    <state x="172" y="129" width="1648" height="852" key="DiffContextDialog" timestamp="1602314005066">
+      <screen x="72" y="29" width="1848" height="1051" />
     </state>
     <state x="172" y="127" width="1648" height="853" key="DiffContextDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1601749087767" />
+    <state x="172" y="129" width="1648" height="852" key="DiffContextDialog/72.29.1848.1051@72.29.1848.1051" timestamp="1602314005066" />
     <state width="1825" height="214" key="GridCell.Tab.0.bottom" timestamp="1602169221369">
       <screen x="72" y="29" width="1848" height="1051" />
     </state>

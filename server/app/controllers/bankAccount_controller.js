@@ -25,6 +25,7 @@ exports.create = (req, res) => {
             
             // Save the account in the database
             account.save().then(data => {
+                transaction.saveTransaction(data, req.body.amount, res, "income");
                 res.send(data);
             }).catch(err => {
                 res.status(500).send({

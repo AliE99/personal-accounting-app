@@ -3,26 +3,19 @@ const Transaction = require("../models/transaction_model");
 // Save the transaction
 // Kind : income or expense
 exports.saveTransaction = (data, money, res, kind) => {
-    let log = {
-        amount: money,
-        currency: data.currency,
-    };
     
+    let source = "";
     // Check if the data coming from a bank
     if (data.bank_name) {
-        log.bank_name = data.bank_name;
-        log.bank_number = data.number;
-    }
-    let transaction;
-    if (kind === "income") {
-        transaction = new Transaction({
-            income: log,
-        });
+        source = data.bank_name;
     } else {
-        transaction = new Transaction({
-            expense: log,
-        });
+        source = "Cash";
     }
+    let transaction = new Transaction({
+        kind: kind,
+        amount: money,
+        source: source,
+    });
     
     transaction.save().then(
     ).catch(err => {

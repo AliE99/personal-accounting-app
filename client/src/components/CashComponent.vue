@@ -25,7 +25,7 @@ export default {
   },
   props: {
     cashData: {
-      type: Object,
+      type: Array,
     },
   },
 };
