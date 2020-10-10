@@ -60,6 +60,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
+
       <b-form-group label=" : واحد پول" class="container" v-if="selected==='cash'">
         <b-form-radio v-model="currency" name="rial" value="rial">ریال</b-form-radio>
         <b-form-radio v-model="currency" name="dollar" value="dollar">دلار</b-form-radio>
@@ -98,18 +99,31 @@ export default {
     // Submit the forms and send them to the database
     onSubmit(evt) {
       evt.preventDefault();
-      if (this.selected === "cash") {
-        axios.post("http://localhost:3000/cashes", {
-          amount: this.amount,
-          currency: this.currency,
-        }).then(() => {
-          this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
-        }).catch((err) => {
-          this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
-          alert(err);
-        });
+      // If Income
+      if (this.kind === "income") {
+        if (this.selected === "cash") {
+          axios.post("http://localhost:3000/cashes", {
+            amount: this.amount,
+            currency: this.currency,
+          }).then(() => {
+            this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
+          }).catch((err) => {
+            this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
+            alert(err);
+          });
+        } else {
+          axios.post("http://localhost:3000/accounts", {
+            bank_name: "a",
+            account_number: this.source,
+            amount: this.amount,
+          }).then(() => {
+            this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
+          }).catch(err => {
+            this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
+            alert(err);
+          });
+        }
       }
-
     },
 
     // Reset the fields
