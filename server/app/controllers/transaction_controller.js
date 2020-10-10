@@ -9,7 +9,7 @@ exports.saveTransaction = (data, money, res, kind) => {
     if (data.bank_name) {
         source = data.bank_name;
     } else {
-        source = "Cash";
+        source = `Cash, ${data.currency}`;
     }
     let transaction = new Transaction({
         kind: kind,

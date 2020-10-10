@@ -23,6 +23,7 @@ exports.create = (req, res) => {
     
             //  Save the cash in the database
             cash.save().then((data) => {
+                transaction.saveTransaction(data, req.body.amount, res, "income");
                 res.send(data);
             }).catch((err) => {
                 res.status(500).send({
