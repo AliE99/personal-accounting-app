@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <h3>Cashes :</h3>
+    <h3>پول نقد :</h3>
+    <b-alert show variant="secondary">ارزش کل : {{ this.total_amount[0].total_amount }}</b-alert>
     <b-table hover :items="this.cashData" head-variant="dark" striped :fields="cashFields"
              :sort-by.sync="sortCashBy"
              :sort-desc.sync="sortDesc"
@@ -9,11 +10,13 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CashComponent",
   data() {
     return {
-      cashes : this.cashData,
+      total_amount:[],
       // Sorting Cash Table
       sortCashBy: "amount",
       sortDesc: false,
@@ -27,6 +30,11 @@ export default {
     cashData: {
       type: Array,
     },
+  },
+  mounted() {
+    axios.get("http://localhost:3000/cashes/total").then(total => {
+      this.total_amount = total.data;
+    });
   },
 };
 </script>

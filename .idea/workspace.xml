@@ -23,9 +23,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/BankAccountComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BankAccountComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/CashComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CashComponent.vue" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/bankAccount_controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app/controllers/transaction_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/transaction_controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app/models/transaction_model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/transaction_model.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/client/src/components/CreateAssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CreateAssetComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/cash_controller.js" afterDir="false" />
+>>>>>>> c375790e72d46e03675c2c024ca5e000ebe9a5a2
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,10 +118,14 @@
       <workItem from="1602187222838" duration="2825000" />
       <workItem from="1602236204941" duration="4376000" />
       <workItem from="1602242827554" duration="4364000" />
+<<<<<<< HEAD
       <workItem from="1602253486945" duration="5928000" />
       <workItem from="1602312073643" duration="1931000" />
       <workItem from="1602314021256" duration="99000" />
       <workItem from="1602314143025" duration="1325000" />
+=======
+      <workItem from="1602253486945" duration="5427000" />
+>>>>>>> c375790e72d46e03675c2c024ca5e000ebe9a5a2
     </task>
     <servers />
   </component>

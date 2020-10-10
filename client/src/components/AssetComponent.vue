@@ -25,8 +25,8 @@ export default {
   components: {CashComponent, BankAccountComponent},
   data() {
     return {
-      accounts: {},
-      cashes: {},
+      accounts: [],
+      cashes: [],
       error: "",
     };
   },
@@ -39,7 +39,6 @@ export default {
     getAssets().then(data => {
       this.accounts = data.account;
       this.cashes = data.cash;
-      console.log(data);
     }).catch(err => {
       console.log(`Error : ${err}`);
     });
