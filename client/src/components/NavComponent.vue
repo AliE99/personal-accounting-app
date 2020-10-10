@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-navbar toggleable type="dark" variant="dark">
+    <b-navbar toggleable type="dark" variant="dark" fixed="top">
       <b-navbar-brand href="#">حسابداری شخصی</b-navbar-brand>
 
       <b-navbar-toggle target="navbar-toggle-collapse">
@@ -14,7 +14,6 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item href="#" @click="changeThePage('assets')">لیست دارایی ها</b-nav-item>
           <b-nav-item href="#" @click="changeThePage('trans')">لیست دخل و خرج</b-nav-item>
-          <b-nav-item href="#" disabled>Disabled</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

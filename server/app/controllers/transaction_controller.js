@@ -11,8 +11,10 @@ exports.saveTransaction = (data, money, res, kind) => {
     } else {
         source = `Cash, ${data.currency}`;
     }
+    let farsiKind = (kind === "income") ? "دریافتی" : "پرداختی";
+    
     let transaction = new Transaction({
-        kind: kind,
+        kind: farsiKind,
         amount: money,
         source: source,
     });

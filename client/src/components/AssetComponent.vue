@@ -46,7 +46,6 @@ export default {
   },
   methods: {
     changeThePage(page) {
-      console.log("hi");
       this.callback(page);
     },
   },

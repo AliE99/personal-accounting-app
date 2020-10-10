@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="">
     <h3 >Accounts :</h3>
-    <b-table :items="this.accountData" :fields="accountFields" striped responsive="sm" head-variant="dark">
+    <b-table :items="this.accountData" :fields="accountFields" striped responsive="sm" head-variant="dark" small hover>
       <template v-slot:cell(show_details)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
-          {{ row.detailsShowing ? "Hide" : "Show" }} Details
+          {{ row.detailsShowing ? "بستن" : "نمایش" }} مشخصات
         </b-button>
       </template>
 
@@ -21,7 +21,7 @@
           </b-row>
 
           <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b>مقدار :</b></b-col>
+            <b-col sm="3" class="text-sm-right"><b>موجودی :</b></b-col>
             <b-col>{{ row.item.amount }}</b-col>
           </b-row>
 
@@ -46,9 +46,9 @@ export default {
       sortAccountBy: "bank_name",
       sortDesc: false,
       accountFields: [
-        {key: "bank_name", sortable: true},
-        {key: "amount", sortable: true},
-        "show_details",
+        {key: "bank_name", sortable: true,label:"بانک"},
+        {key: "amount", sortable: true,label:"موجودی"},
+          "show_details",
       ],
     };
   },

@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="">
     <h3>Cashes :</h3>
-    <b-table hover :items="this.cashData" head-variant="dark" striped :fields="cashFields" responsive="sm"
+    <b-table hover :items="this.cashData" head-variant="dark" striped :fields="cashFields" responsive="sm" small
              :sort-by.sync="sortCashBy"
              :sort-desc.sync="sortDesc"
              sort-icon-left></b-table>
@@ -18,8 +18,8 @@ export default {
       sortCashBy: "amount",
       sortDesc: false,
       cashFields: [
-        {key: "amount", sortable: true},
-        {key: "currency", sortable: false},
+        {key: "amount", sortable: true,label:"موجودی"},
+        {key: "currency", sortable: false,label:"واحد"},
       ],
     };
   },

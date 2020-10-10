@@ -1,14 +1,14 @@
 <template>
   <div class="container mt-5">
     <div class="mt-5">
-    <b-table :items="transaction" :fields="transactionFields" striped responsive="true">
+    <b-table :items="transaction" :fields="transactionFields" striped responsive="true" hover small>
 
       <template v-slot:cell(index)="data">
         {{ data.index + 1 }}
       </template>
 
       <template v-slot:cell(createdAt)="data">
-        {{ new Date(data.item.createdAt).toLocaleDateString('fa-IR')}}/
+        {{ new Date(data.item.createdAt).toLocaleDateString('fa-IR')}}
         {{ new Date(data.item.createdAt).toLocaleTimeString('fa-IR')}}
       </template>
 
@@ -16,7 +16,7 @@
       // Collapse
       <template v-slot:cell(show_details)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
-          {{ row.detailsShowing ? "Hide" : "Show" }} Details
+          {{ row.detailsShowing ? "پنهان کردن" : "نمایش" }} مشخصات
         </b-button>
 
       </template>
@@ -62,8 +62,8 @@ export default {
     return {
       transaction: {},
       transactionFields: [
-        {key: "kind", sortable: true},
-        {key: "amount", sortable: true},
+        {key: "kind", sortable: true,label:"نوع تراکنش"},
+        {key: "amount", sortable: true,label:"مقدار"},
         { key: 'createdAt', label: 'تاریخ', sortable: true },
         "show_details",
       ],
