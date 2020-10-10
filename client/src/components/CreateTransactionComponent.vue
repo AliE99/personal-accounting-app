@@ -12,7 +12,6 @@
       {{ alertMsg }}
     </b-alert>
 
-
     <b-form @submit="onSubmit" @reset="onReset">
 
       <b-form-group class="container mt-5" label=" : نوع تراکنش خود را مشخص کنید">
