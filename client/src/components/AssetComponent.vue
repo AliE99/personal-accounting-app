@@ -8,7 +8,7 @@
       <hr>
     </div>
     <div class="container">
-      <b-button @click="changeThePage('createAsset')" block pill variant="outline-primary">ایجاد یک دارایی جدید
+      <b-button class="fixed-bottom" @click="changeThePage('createAsset')" block pill variant="primary">ایجاد یک دارایی جدید
       </b-button>
     </div>
   </div>

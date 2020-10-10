@@ -49,7 +49,7 @@
           </b-card>
         </template>
       </b-table>
-      <b-button @click="changeThePage('createTransaction')" block pill variant="outline-primary">ثبت دخل و خرج
+      <b-button class="fixed-bottom" @click="changeThePage('createTransaction')" block pill variant="primary">ثبت دخل و خرج
       </b-button>
     </div>
   </div>

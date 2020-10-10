@@ -95,8 +95,8 @@
 
       </div>
 
-      <b-button v-show="selected" type="submit" variant="primary">افزودن</b-button>
-      <b-button v-show="selected" type="reset" variant="danger">دوباره</b-button>
+      <b-button v-show="selected" type="submit" variant="primary" block pill>افزودن</b-button>
+      <b-button v-show="selected" type="reset" variant="danger" block pill>دوباره</b-button>
     </b-form>
   </div>
 </template>
