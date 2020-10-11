@@ -122,9 +122,8 @@ export default {
           currency: this.currency,
         }).then(() => {
           this.showAlert("success", "تراکنش شما با موفقیت ثبت شد !");
-        }).catch((err) => {
-          this.showAlert("danger", "مشکلی در ثبت تراکنش شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
-          alert(err);
+        }).catch(() => {
+          this.showAlert("danger", "مشکلی در ثبت تراکنش شما وجود دارد لطفاموجودی خود را چک کنید !");
         });
       } else {
         axios.post(url, {
@@ -133,9 +132,8 @@ export default {
           amount: this.amount,
         }).then(() => {
           this.showAlert("success", "تراکنش شما با موفقیت ثبت شد !");
-        }).catch(err => {
-          this.showAlert("danger", "مشکلی در ثبت تراکنش شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
-          alert(err);
+        }).catch(() => {
+          this.showAlert("danger", "مشکلی در ثبت تراکنش شما وجود دارد لطفاموجودی خود را چک کنید !");
         });
       }
 

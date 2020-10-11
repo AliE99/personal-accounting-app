@@ -25,7 +25,8 @@ exports.create = (req, res) => {
             
             // Save the account in the database
             account.save().then(data => {
-                transaction.saveTransaction(data, req.body.amount, res, "income");
+                transaction.saveTransaction(data, req.body.amount, res,
+                    "income");
                 res.send(data);
             }).catch(err => {
                 res.status(500).send({
@@ -40,10 +41,10 @@ exports.create = (req, res) => {
         else {
             data.amount += parseInt(req.body.amount);
             data.save();
-    
+            
             // Save the Transaction
             transaction.saveTransaction(data, req.body.amount, res, "income");
-    
+            
             res.send(data);
         }
     });
@@ -150,13 +151,18 @@ exports.expense = (req, res) => {
     const money = req.body.amount;
     
     Account.findOne({account_number: number}).then(account => {
-        account.amount -= money;
-        account.save();
+        if (account.amount >= money) {
+            account.amount -= money;
+            account.save();
+            // Save the Transaction
+            transaction.saveTransaction(account, money, res, "expense");
+            res.send(account);
+        } else {
+            return res.status(400).send({
+                message: "Your amount of money is not enough",
+            });
+        }
         
-        // Save the Transaction
-        transaction.saveTransaction(account, money, res, "expense");
-        
-        res.send(account);
     }).catch(err => {
         res.status(500).send({
             message:

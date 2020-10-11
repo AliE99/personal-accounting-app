@@ -20,10 +20,11 @@ exports.create = (req, res) => {
                 currency: req.body.currency || "rial",
                 amount: req.body.amount || 0,
             });
-    
+            
             //  Save the cash in the database
             cash.save().then((data) => {
-                transaction.saveTransaction(data, req.body.amount, res, "income");
+                transaction.saveTransaction(data, req.body.amount, res,
+                    "income");
                 res.send(data);
             }).catch((err) => {
                 res.status(500).send({
@@ -38,16 +39,14 @@ exports.create = (req, res) => {
         else {
             data.amount += parseInt(req.body.amount);
             data.save();
-    
+            
             // Save the Transaction
             transaction.saveTransaction(data, req.body.amount, res, "income");
-    
+            
             res.send(data);
         }
         
     });
-    
-    
     
 };
 
@@ -162,15 +161,19 @@ exports.income = (req, res) => {
 exports.expense = (req, res) => {
     const curr = req.body.currency;
     const money = req.body.amount;
-    
     Cash.findOne({currency: curr}).then(cash => {
-        cash.amount -= money;
-        cash.save();
+        if (cash.amount >= parseInt(money)) {
+            cash.amount -= money;
+            cash.save();
+            // Save the Transaction
+            transaction.saveTransaction(cash, money, res, "expense");
+            res.send(cash);
+        } else {
+            return res.status(400).send({
+                message: "Your amount of money is not enough",
+            });
+        }
         
-        // Save the Transaction
-        transaction.saveTransaction(cash, money, res, "expense");
-        
-        res.send(cash);
     }).catch(err => {
         res.status(500).send({
             message:

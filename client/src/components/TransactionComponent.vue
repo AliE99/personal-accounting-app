@@ -100,9 +100,9 @@ export default {
     changeThePage(page) {
       this.callback(page);
     },
-    deleteTransaction(data) {
-      const url = `http://localhost:3000/transactions/delete/${data}`;
-      if (confirm("آیا میخواید تراکنش مورد نظر را حذف کنید ؟")) {
+    deleteTransaction(id) {
+      const url = `http://localhost:3000/transactions/delete/${id}`;
+      if (confirm("آیا میخواهید تراکنش مورد نظر را حذف کنید ؟")) {
         axios.delete(url).then(() => {
           this.showAlert("success", "تراکنش  شما با موفقیت حذف شد !");
           this.reRenderPage();

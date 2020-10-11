@@ -2,7 +2,6 @@
   <div class="container">
     <b-navbar toggleable type="dark" variant="dark" fixed="top">
       <b-navbar-brand href="#">حسابداری شخصی</b-navbar-brand>
-
       <b-navbar-toggle target="navbar-toggle-collapse">
         <template v-slot:default="{ expanded }">
           <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>

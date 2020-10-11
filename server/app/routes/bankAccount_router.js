@@ -25,6 +25,6 @@ router.get("/:accountId", accounts.findOne);
 router.put("/:accountId", accounts.update);
 
 // Delete a account with the specified accountId in the request
-router.delete("/:accountId", accounts.delete);
+router.delete("/delete/:accountId", accounts.delete);
 
 module.exports = router;
