@@ -38,5 +38,7 @@ export default {
 </script>
 
 <style>
-
+* {
+  font-family: 'Vazir', sans-serif;
+}
 </style>
