@@ -1,7 +1,9 @@
 <template>
-  <div class="container mt-5">
-    <div class="mt-5">
-      <b-table :items="transaction" :fields="transactionFields" striped responsive="true" hover small>
+  <div class="mt-5">
+    <hr>
+    <h3 >تراکنش ها :</h3>
+    <div class="">
+      <b-table class="" :items="transaction" :fields="transactionFields" striped responsive="true" hover small>
 
         <template v-slot:cell(index)="data">
           {{ data.index + 1 }}
@@ -14,9 +16,9 @@
 
 
         // Collapse
-        <template v-slot:cell(show_details)="row">
+        <template v-slot:cell(details)="row">
           <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
-            {{ row.detailsShowing ? "پنهان کردن" : "نمایش" }} مشخصات
+            {{ row.detailsShowing ? "پنهان" : "نمایش" }}
           </b-button>
 
         </template>
@@ -64,10 +66,10 @@ export default {
     return {
       transaction: {},
       transactionFields: [
-        {key: "kind", sortable: true, label: "نوع تراکنش"},
+        {key: "kind", sortable: true, label: "تراکنش"},
         {key: "amount", sortable: true, label: "مقدار"},
         {key: "createdAt", label: "تاریخ", sortable: true},
-        "show_details",
+        "details",
       ],
     };
   },

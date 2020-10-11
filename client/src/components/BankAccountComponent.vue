@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h3 >Accounts :</h3>
+    <h3 >حساب های بانکی :</h3>
     <b-table :items="this.accountData" :fields="accountFields" striped responsive="sm" head-variant="dark" small hover>
       <template v-slot:cell(show_details)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">

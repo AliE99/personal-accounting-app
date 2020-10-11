@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h3>Cashes :</h3>
+    <h3>پول نقد :</h3>
     <b-table hover :items="this.cashData" head-variant="dark" striped :fields="cashFields" responsive="sm" small
              :sort-by.sync="sortCashBy"
              :sort-desc.sync="sortDesc"

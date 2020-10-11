@@ -1,20 +1,20 @@
 <template>
-  <div class="container mb-5">
+  <div class="container mt-5">
     <hr>
 
-    <b-alert
-        :show="dismissCountDown"
-        dismissible
-        :variant="alertKind"
-        @dismissed="dismissCountDown=0"
-        @dismiss-count-down="countDownChanged"
+    <b-alert class="mt-5"
+             :show="dismissCountDown"
+             dismissible
+             :variant="alertKind"
+             @dismissed="dismissCountDown=0"
+             @dismiss-count-down="countDownChanged"
     >
       {{ alertMsg }}
     </b-alert>
 
     <b-form @submit="onSubmit" @reset="onReset">
 
-      <b-form-group class="container mt-5" label=" : نوع تراکنش خود را مشخص کنید">
+      <b-form-group required class="container mt-5" label=" : نوع تراکنش خود را مشخص کنید">
         <b-form-radio v-model="kind" name="income" value="income">دریافتی</b-form-radio>
         <b-form-radio v-model="kind" name="expense" value="expense">پرداختی</b-form-radio>
       </b-form-group>
@@ -82,12 +82,12 @@ export default {
     return {
       selected: "cash",
 
-      dismissSecs: 5,
+      dismissSecs: 3,
       dismissCountDown: 0,
       alertKind: "",
       alertMsg: "",
 
-      kind: "",
+      kind: "income",
       amount: null,
       source: "cash",
       currency: "rial",
@@ -97,37 +97,55 @@ export default {
   methods: {
     // Submit the forms and send them to the database
     onSubmit(evt) {
+      let url;
       evt.preventDefault();
-      // If Income
+
       if (this.kind === "income") {
         if (this.selected === "cash") {
-          axios.post("http://localhost:3000/cashes", {
-            amount: this.amount,
-            currency: this.currency,
-          }).then(() => {
-            this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
-          }).catch((err) => {
-            this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
-            alert(err);
-          });
-        } else {
-          axios.post("http://localhost:3000/accounts", {
-            bank_name: "a",
-            account_number: this.source,
-            amount: this.amount,
-          }).then(() => {
-            this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
-          }).catch(err => {
-            this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
-            alert(err);
-          });
+          url = "http://localhost:3000/cashes";
+        } else if (this.selected === "account") {
+          url = "http://localhost:3000/accounts";
+        }
+      } else {
+        if (this.selected === "cash") {
+          url = "http://localhost:3000/cashes/expense";
+        } else if (this.selected === "account") {
+          url = "http://localhost:3000/accounts/expense";
         }
       }
+
+      // If Income
+
+      if (this.selected === "cash") {
+        axios.post(url, {
+          amount: this.amount,
+          currency: this.currency,
+        }).then(() => {
+          this.showAlert("success", "تراکنش شما با موفقیت ثبت شد !");
+        }).catch((err) => {
+          this.showAlert("danger", "مشکلی در ثبت تراکنش شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
+          alert(err);
+        });
+      } else {
+        axios.post(url, {
+          bank_name: "a",
+          account_number: this.source,
+          amount: this.amount,
+        }).then(() => {
+          this.showAlert("success", "تراکنش شما با موفقیت ثبت شد !");
+        }).catch(err => {
+          this.showAlert("danger", "مشکلی در ثبت تراکنش شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
+          alert(err);
+        });
+      }
+
     },
 
     // Reset the fields
     onReset(evt) {
       evt.preventDefault();
+      this.amount = null;
+      this.source = "cash";
     },
 
     // Alert for success or reject saving data

@@ -109,7 +109,7 @@ export default {
   data() {
     return {
       selected: "",
-      dismissSecs: 5,
+      dismissSecs: 3,
       dismissCountDown: 0,
       alertKind: "",
       alertMsg: "",
@@ -147,6 +147,7 @@ export default {
         });
       }
     },
+
     // Reset the fields
     onReset(evt) {
       evt.preventDefault();
@@ -157,6 +158,7 @@ export default {
       this.cash.amount = null;
       this.cash.currency = "";
     },
+
     // Alert for success or reject saving data
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
