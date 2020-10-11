@@ -1,13 +1,21 @@
 <template>
-  <div class="mt-5">
+  <div class="container mt-5">
     <hr>
-    <h3 >تراکنش ها :</h3>
+    <h3 class="container">تراکنش ها :</h3>
     <div class="">
-      <b-table class="" :items="transaction" :fields="transactionFields" striped responsive="true" hover small>
+      <b-alert class="mt-5"
+               :show="dismissCountDown"
+               dismissible
+               :variant="alertKind"
+               @dismissed="dismissCountDown=0"
+               @dismiss-count-down="countDownChanged"
+      >
+        {{ alertMsg }}
+      </b-alert>
 
-        <template v-slot:cell(index)="data">
-          {{ data.index + 1 }}
-        </template>
+      <b-table class="container" :items="transaction" :fields="transactionFields" striped responsive="sm"
+               head-variant="dark" small hover>
+
 
         <template v-slot:cell(createdAt)="data">
           {{ new Date(data.item.createdAt).toLocaleDateString("fa-IR") }}
@@ -48,10 +56,12 @@
               </b-col>
             </b-row>
 
+            <b-button size="sm" @click="deleteTransaction(row.item._id)" variant="danger">حذف تراکنش</b-button>
           </b-card>
         </template>
       </b-table>
-      <b-button class="fixed-bottom" @click="changeThePage('createTransaction')" block pill variant="primary">ثبت دخل و خرج
+      <b-button class="fixed-bottom" @click="changeThePage('createTransaction')" block pill variant="primary">ثبت دخل و
+        خرج
       </b-button>
     </div>
   </div>
@@ -64,6 +74,12 @@ export default {
   name: "TransactionComponent",
   data() {
     return {
+
+      dismissSecs: 3,
+      dismissCountDown: 0,
+      alertKind: "",
+      alertMsg: "",
+
       transaction: {},
       transactionFields: [
         {key: "kind", sortable: true, label: "تراکنش"},
@@ -75,18 +91,49 @@ export default {
   },
 
   mounted() {
-    axios.get("http://localhost:3000/transactions").then(transaction => {
-      this.transaction = transaction.data;
-    }).catch(err => {
-      alert(err);
-    });
+
+    // Load data every time
+    this.reRenderPage();
   },
 
   methods: {
     changeThePage(page) {
       this.callback(page);
     },
+    deleteTransaction(data) {
+      const url = `http://localhost:3000/transactions/delete/${data}`;
+      if (confirm("آیا میخواید تراکنش مورد نظر را حذف کنید ؟")) {
+        axios.delete(url).then(() => {
+          this.showAlert("success", "تراکنش  شما با موفقیت حذف شد !");
+          this.reRenderPage();
+        }).catch(err => {
+          this.showAlert("danger", "مشکلی در حذف تراکنش شما وجود دارد لطفا مجددا تلاش کنید !");
+          alert(err);
+        });
+
+      }
+    },
+
+
+    // Alert for success or reject saving data
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
+    showAlert(kind, msg) {
+      this.alertMsg = msg;
+      this.alertKind = kind;
+      this.dismissCountDown = this.dismissSecs;
+    },
+
+    reRenderPage(){
+      axios.get("http://localhost:3000/transactions").then(transaction => {
+        this.transaction = transaction.data;
+      }).catch(err => {
+        alert(err);
+      });
+    }
   },
+
 
   props: {
     callback: {

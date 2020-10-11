@@ -63,3 +63,28 @@ exports.findByMonth = (req, res) => {
         });
     });
 };
+
+exports.delete = (req, res) => {
+    Transaction.findByIdAndDelete(req.params.transactionId).
+        then(transaction => {
+            if (!transaction) {
+                return res.status(404).send({
+                    message: "Transaction not found with id " +
+                        req.params.transactionId,
+                });
+            }
+            res.send({message: "Transaction deleted successfully!"});
+        }).
+        catch(err => {
+            if (err.kind === "ObjectId" || err.name === "NotFound") {
+                return res.status(404).send({
+                    message: "Transaction not found with id " +
+                        req.params.transactionId,
+                });
+            }
+            return res.status(500).send({
+                message: "Could not delete Transaction with id " +
+                    req.params.transactionId,
+            });
+        });
+};
