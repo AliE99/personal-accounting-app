@@ -39,6 +39,7 @@ export default {
 
 <style>
 * {
-  font-family: 'Vazir', sans-serif;
+  /*font-family: 'Vazir', sans-serif;*/
+  font-family: 'Almarai', sans-serif;
 }
 </style>
