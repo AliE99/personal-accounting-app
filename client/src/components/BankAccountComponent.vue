@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h3 align="right"> : حساب های بانکی </h3>
+    <h4 align="right"> : حساب های بانکی </h4>
     <b-alert class="mt-5"
              :show="dismissCountDown"
              dismissible
@@ -11,7 +11,7 @@
       {{ alertMsg }}
     </b-alert>
     <b-table :items="this.accountData" :fields="accountFields" striped responsive="sm" head-variant="dark" small hover>
-      <template v-slot:cell(show_details)="row">
+      <template v-slot:cell(details)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
           {{ row.detailsShowing ? "بستن" : "نمایش" }} مشخصات
         </b-button>
@@ -67,7 +67,7 @@ export default {
       accountFields: [
         {key: "bank_name", sortable: true, label: "بانک"},
         {key: "amount", sortable: true, label: "موجودی"},
-        "show_details",
+        {key: "details", label: "مشخصات"},
       ],
     };
   },

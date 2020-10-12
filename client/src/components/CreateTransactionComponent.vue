@@ -2,22 +2,24 @@
   <div class="container mt-5">
     <hr>
 
-    <b-alert class="mt-5"
-             :show="dismissCountDown"
-             dismissible
-             :variant="alertKind"
-             @dismissed="dismissCountDown=0"
-             @dismiss-count-down="countDownChanged"
-    >
-      {{ alertMsg }}
-    </b-alert>
 
-    <b-form @submit="onSubmit" @reset="onReset">
+
+    <b-form class="pb-5" @submit="onSubmit" @reset="onReset">
 
       <b-form-group required class="container mt-5" label=" : نوع تراکنش خود را مشخص کنید">
         <b-form-radio v-model="kind" name="income" value="income">دریافتی</b-form-radio>
         <b-form-radio v-model="kind" name="expense" value="expense">پرداختی</b-form-radio>
       </b-form-group>
+
+      <b-alert
+               :show="dismissCountDown"
+               dismissible
+               :variant="alertKind"
+               @dismissed="dismissCountDown=0"
+               @dismiss-count-down="countDownChanged"
+      >
+        {{ alertMsg }}
+      </b-alert>
 
       <b-form-group
           class="container"

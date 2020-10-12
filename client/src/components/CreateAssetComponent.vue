@@ -1,12 +1,12 @@
 <template>
   <div class="container mb-5">
 
-    <b-form-group class="mb-3 mt-3"
-                  id="input-group-0"
-                  label="نوع دارایی خود را انتخاب کنید"
-                  label-for="input-0"
-    >
-      <b-form-select class="mb-3 mt-5" id="input-0" v-model="selected" :options="['account','cash']"></b-form-select>
+    <hr>
+
+    <b-form-group required class="container mt-5" label=" : نوع دارایی خود را مشخص کنید">
+      <b-form-radio v-model="selected" name="cash" value="cash">پول نقد</b-form-radio>
+      <b-form-radio v-model="selected" name="account" value="account">حساب بانکی</b-form-radio>
+    </b-form-group>
 
       <b-alert
           :show="dismissCountDown"
@@ -17,10 +17,9 @@
       >
         {{ alertMsg }}
       </b-alert>
-    </b-form-group>
 
     <b-form @submit="onSubmit" @reset="onReset">
-      <div class="make-account" v-if="selected==='account'">
+      <div class="container" v-if="selected==='account'">
 
         <b-form-group
             id="input-group-1"
@@ -32,7 +31,7 @@
               v-model="account.bank_name"
               type="text"
               required
-              placeholder="Enter Your Bank Name"
+              placeholder="نام بانک موردنظر خود را وارد کنید"
           ></b-form-input>
         </b-form-group>
 
@@ -46,7 +45,7 @@
               v-model="account.account_number"
               type="number"
               required
-              placeholder="Enter Your Bank Number"
+              placeholder="شماره حساب خود را وارد کنید"
               :state="validation"
           ></b-form-input>
           <b-form-invalid-feedback :state="validation">
@@ -64,13 +63,13 @@
               v-model="account.amount"
               type="number"
               required
-              placeholder="Enter Your Amount of Money"
+              placeholder="مقدار پول مورد نظر خود را وارد کنید"
           ></b-form-input>
         </b-form-group>
 
       </div>
 
-      <div class="make-cash" v-if="selected==='cash'">
+      <div class="container" v-if="selected==='cash'">
 
         <b-form-group
             id="input-group-5"
@@ -108,7 +107,7 @@ export default {
 
   data() {
     return {
-      selected: "",
+      selected: "cash",
       dismissSecs: 3,
       dismissCountDown: 0,
       alertKind: "",
@@ -116,7 +115,7 @@ export default {
       // Account model
       account: {
         bank_name: "",
-        account_number: 0,
+        account_number: null,
         amount: null,
       },
       // Cash model
@@ -173,7 +172,7 @@ export default {
   computed: {
     // validate bank account number
     validation() {
-      return this.account.account_number.toString().length === 16;
+      return parseInt(this.account.account_number).toString().length === 16;
     },
   },
 };

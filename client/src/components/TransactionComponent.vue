@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <hr>
-    <h3 class="container" align="right"> : تراکنش ها</h3>
+    <h4 class="container" align="right"> : تراکنش ها</h4>
     <div class="">
       <b-alert class="mt-5"
                :show="dismissCountDown"
@@ -13,7 +13,7 @@
         {{ alertMsg }}
       </b-alert>
 
-      <b-table class="container" :items="transaction" :fields="transactionFields" striped responsive="sm"
+      <b-table class="" :items="transaction" :fields="transactionFields" striped responsive="sm"
                head-variant="dark" small hover>
 
 
@@ -85,7 +85,7 @@ export default {
         {key: "kind", sortable: true, label: "تراکنش"},
         {key: "amount", sortable: true, label: "مقدار"},
         {key: "createdAt", label: "تاریخ", sortable: true},
-        "details",
+        {key: "details", label: "مشخصات"},
       ],
     };
   },
@@ -114,7 +114,6 @@ export default {
       }
     },
 
-
     // Alert for success or reject saving data
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
@@ -125,15 +124,14 @@ export default {
       this.dismissCountDown = this.dismissSecs;
     },
 
-    reRenderPage(){
+    reRenderPage() {
       axios.get("http://localhost:3000/transactions").then(transaction => {
         this.transaction = transaction.data;
       }).catch(err => {
         alert(err);
       });
-    }
+    },
   },
-
 
   props: {
     callback: {
@@ -143,6 +141,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+/* Hide scrollbar for Chrome, Safari and Opera */
 
 </style>

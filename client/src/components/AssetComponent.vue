@@ -4,6 +4,7 @@
     <p v-if="error">{{ error }}</p>
     <div class="container mt-5">
       <BankAccountComponent :accountData="accounts"></BankAccountComponent>
+      <hr>
       <CashComponent :cashData="cashes"></CashComponent>
       <hr>
     </div>
