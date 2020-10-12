@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h3>حساب های بانکی :</h3>
+    <h3 align="right"> : حساب های بانکی </h3>
     <b-alert class="mt-5"
              :show="dismissCountDown"
              dismissible

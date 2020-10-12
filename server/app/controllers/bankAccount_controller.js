@@ -158,7 +158,7 @@ exports.expense = (req, res) => {
             transaction.saveTransaction(account, money, res, "expense");
             res.send(account);
         } else {
-            return res.status(400).send({
+            return  res.status(400).send({
                 message: "Your amount of money is not enough",
             });
         }

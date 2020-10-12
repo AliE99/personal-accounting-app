@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <hr>
-    <h3 class="container">تراکنش ها :</h3>
+    <h3 class="container" align="right"> : تراکنش ها</h3>
     <div class="">
       <b-alert class="mt-5"
                :show="dismissCountDown"

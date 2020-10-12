@@ -122,7 +122,8 @@ export default {
           currency: this.currency,
         }).then(() => {
           this.showAlert("success", "تراکنش شما با موفقیت ثبت شد !");
-        }).catch(() => {
+        }).catch((err) => {
+          console.log(err.response.message);
           this.showAlert("danger", "مشکلی در ثبت تراکنش شما وجود دارد لطفاموجودی خود را چک کنید !");
         });
       } else {
