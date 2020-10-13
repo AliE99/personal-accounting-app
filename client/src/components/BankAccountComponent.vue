@@ -1,6 +1,7 @@
 <template>
   <div class="">
     <h4 align="right"> : حساب های بانکی </h4>
+
     <b-alert class="mt-5"
              :show="dismissCountDown"
              dismissible
@@ -15,6 +16,8 @@
         <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
           {{ row.detailsShowing ? "بستن" : "نمایش" }} مشخصات
         </b-button>
+
+
       </template>
 
       <template v-slot:row-details="row">

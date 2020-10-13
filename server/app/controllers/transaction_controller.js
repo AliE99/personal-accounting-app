@@ -31,7 +31,16 @@ exports.saveTransaction = (data, money, res, kind) => {
 
 // Retrieve and return all transactions from the database.
 exports.findAll = (req, res) => {
-    Transaction.find().then((transactions) => {
+    // Transaction.find().then((transactions) => {
+    //     res.send(transactions);
+    // }).catch((err) => {
+    //     res.status(500).send({
+    //         message:
+    //             err.message ||
+    //             "Some error occurred while retrieving transactions.",
+    //     });
+    // });
+    Transaction.find().sort({'createdAt':-1}).limit(10).then((transactions) => {
         res.send(transactions);
     }).catch((err) => {
         res.status(500).send({
