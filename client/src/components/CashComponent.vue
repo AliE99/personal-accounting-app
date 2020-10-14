@@ -4,7 +4,13 @@
     <b-table hover :items="this.cashData" head-variant="dark" striped :fields="cashFields" responsive="sm" small
              :sort-by.sync="sortCashBy"
              :sort-desc.sync="sortDesc"
-             sort-icon-left></b-table>
+             sort-icon-left>
+
+      <template v-slot:cell(amount)="data">
+        {{ data.item.amount | numFormat('0a') }}
+      </template>
+
+    </b-table>
   </div>
 </template>
 

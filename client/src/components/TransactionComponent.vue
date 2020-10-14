@@ -16,6 +16,10 @@
       <b-table class="" :items="transaction" :fields="transactionFields" striped responsive="sm"
                head-variant="dark" small hover>
 
+        <template v-slot:cell(amount)="data">
+          {{ data.item.amount | numFormat('0a') }}
+        </template>
+
 
         <template v-slot:cell(createdAt)="data">
           {{ new Date(data.item.createdAt).toLocaleDateString("fa-IR") }}

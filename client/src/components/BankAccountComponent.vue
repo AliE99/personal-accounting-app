@@ -12,12 +12,15 @@
       {{ alertMsg }}
     </b-alert>
     <b-table :items="this.accountData" :fields="accountFields" striped responsive="sm" head-variant="dark" small hover>
+
+      <template v-slot:cell(amount)="data">
+        {{ data.item.amount | numFormat('0a') }}
+      </template>
+
       <template v-slot:cell(details)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
           {{ row.detailsShowing ? "بستن" : "نمایش" }} مشخصات
         </b-button>
-
-
       </template>
 
       <template v-slot:row-details="row">

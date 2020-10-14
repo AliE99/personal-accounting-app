@@ -11,8 +11,10 @@
     "axios": "^0.20.0",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
+    "numeral": "^2.0.6",
     "vazir-font": "^26.0.2",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-filter-number-format": "^3.0.1"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.11.5",
