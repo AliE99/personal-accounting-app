@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <h4 align="right"> : حساب های بانکی </h4>
-
+    <b-button class="mb-1 p-2" block variant="success" disabled>ارزش کل : {{total_money | numFormat}}</b-button>
     <b-alert class="mt-5"
              :show="dismissCountDown"
              dismissible
@@ -14,12 +14,12 @@
     <b-table :items="this.accountData" :fields="accountFields" striped responsive="sm" head-variant="dark" small hover>
 
       <template v-slot:cell(amount)="data">
-        {{ data.item.amount | numFormat('0a') }}
+        {{ data.item.amount | numFormat }}
       </template>
 
       <template v-slot:cell(details)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
-          {{ row.detailsShowing ? "بستن" : "نمایش" }} مشخصات
+          {{ row.detailsShowing ? "بستن" : "نمایش" }}
         </b-button>
       </template>
 
@@ -60,7 +60,9 @@ export default {
   name: "BankAccountComponent",
   data() {
     return {
+      total_money:0,
 
+      // Alert
       dismissSecs: 3,
       dismissCountDown: 0,
       alertKind: "",
@@ -108,6 +110,11 @@ export default {
     accountData: {
       type: Array,
     },
+  },
+  mounted() {
+    axios.get("http://localhost:3000/accounts/total").then(total=>{
+      this.total_money = total.data[0].total_amount;
+    })
   },
 };
 </script>

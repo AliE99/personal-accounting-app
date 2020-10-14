@@ -30,7 +30,7 @@
         // Collapse
         <template v-slot:cell(details)="row">
           <b-button size="sm" @click="row.toggleDetails" class="mr-2" variant="outline-info">
-            {{ row.detailsShowing ? "پنهان" : "نمایش" }}
+            {{ row.detailsShowing ? "بستن" : "نمایش" }}
           </b-button>
 
         </template>
