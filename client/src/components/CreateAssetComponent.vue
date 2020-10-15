@@ -8,15 +8,15 @@
       <b-form-radio v-model="selected" name="account" value="account">حساب بانکی</b-form-radio>
     </b-form-group>
 
-      <b-alert
-          :show="dismissCountDown"
-          dismissible
-          :variant="alertKind"
-          @dismissed="dismissCountDown=0"
-          @dismiss-count-down="countDownChanged"
-      >
-        {{ alertMsg }}
-      </b-alert>
+    <b-alert
+        :show="dismissCountDown"
+        dismissible
+        :variant="alertKind"
+        @dismissed="dismissCountDown=0"
+        @dismiss-count-down="countDownChanged"
+    >
+      {{ alertMsg }}
+    </b-alert>
 
     <b-form @submit="onSubmit" @reset="onReset">
       <div class="container" v-if="selected==='account'">
@@ -102,6 +102,7 @@
 
 <script>
 const axios = require("axios");
+const {W} = window;
 export default {
   name: "CreateAssetComponent",
 
@@ -131,14 +132,14 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       if (this.selected === "cash") {
-        axios.post("http://localhost:3000/cashes", this.cash).then(() => {
+        axios.post("http://localhost:3000/cashes", {userId: W.user.getId(), ...this.cash}).then(() => {
           this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
         }).catch(err => {
           this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
           alert(err);
         });
       } else {
-        axios.post("http://localhost:3000/accounts", this.account).then(() => {
+        axios.post("http://localhost:3000/accounts", {userId: W.user.getId(), ...this.account}).then(() => {
           this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
         }).catch(err => {
           this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");

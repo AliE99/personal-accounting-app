@@ -3,11 +3,11 @@ const Transaction = require("../models/transaction_model");
 // Save the transaction
 // Kind : income or expense
 exports.saveTransaction = (data, money, res, kind) => {
-    
+    console.log(data);
     let source = "";
     // Check if the data coming from a bank
     if (data.bank_name) {
-        source = data.bank_name + data.account_number;
+        source = data.bank_name + " : " + data.account_number;
     } else {
         source = `Cash, ${data.currency}`;
     }
@@ -17,6 +17,7 @@ exports.saveTransaction = (data, money, res, kind) => {
         kind: farsiKind,
         amount: money,
         source: source,
+        userId: data.userId,
     });
     
     transaction.save().then(
@@ -31,25 +32,43 @@ exports.saveTransaction = (data, money, res, kind) => {
 
 // Retrieve and return all transactions from the database.
 exports.findAll = (req, res) => {
-    // Transaction.find().then((transactions) => {
-    //     res.send(transactions);
-    // }).catch((err) => {
-    //     res.status(500).send({
-    //         message:
-    //             err.message ||
-    //             "Some error occurred while retrieving transactions.",
-    //     });
-    // });
-    Transaction.find().sort({'createdAt':-1}).limit(10).then((transactions) => {
-        res.send(transactions);
-    }).catch((err) => {
-        res.status(500).send({
-            message:
-                err.message ||
-                "Some error occurred while retrieving transactions.",
+    
+    const {userId} = req.query;
+
+    Transaction.find({userId}).
+        sort({"createdAt": -1}).
+        limit(10).
+        then((transactions) => {
+            res.send(transactions);
+        }).
+        catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving transactions.",
+            });
         });
-    });
+    
 };
+
+// // Retrieve this month's income and expense
+// exports.report = (req, res) => {
+//     let date = new Date().getMonth() + 1;
+//     Transaction.aggregate([
+//         {$addFields: {"month": {$month: "$createdAt"}}},
+//         {
+//             $match: {$and: [{kind: "دریافتی"}, {month: date}]},
+//         },
+//     ]).then(data => {
+//         res.send(data);
+//     }).catch((err) => {
+//         res.status(500).send({
+//             message:
+//                 err.message ||
+//                 "Some error occurred while retrieving Accounts.",
+//         });
+//     });
+// };
 
 // Retrieve and return transactions of the specific month
 exports.findByMonth = (req, res) => {

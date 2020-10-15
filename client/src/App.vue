@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <NavComponent :callback="changeThePage"></NavComponent>
+    <LoadingComponent :callback="changeThePage" v-if="currentPage==='loading'"></LoadingComponent>
+
+    <NavComponent :callback="changeThePage" v-if="currentPage!=='loading'"></NavComponent>
     <AssetComponent :callback="changeThePage" v-if="currentPage==='assets'"></AssetComponent>
     <CreateAssetComponent v-if="currentPage==='createAsset'"></CreateAssetComponent>
     <TransactionComponent :callback="changeThePage" v-if="currentPage==='trans'"></TransactionComponent>
@@ -14,12 +16,13 @@ import NavComponent from "./components/NavComponent";
 import CreateAssetComponent from "./components/CreateAssetComponent";
 import TransactionComponent from "./components/TransactionComponent";
 import CreateTransactionComponent from "./components/CreateTransactionComponent";
+import LoadingComponent from "@/components/LoadingComponent";
 
 export default {
   name: "App",
   data: function() {
     return {
-      currentPage: "assets",
+      currentPage: "loading",
     };
   },
   components: {
@@ -28,6 +31,7 @@ export default {
     NavComponent: NavComponent,
     CreateAssetComponent: CreateAssetComponent,
     TransactionComponent: TransactionComponent,
+    LoadingComponent: LoadingComponent,
   },
   methods: {
     changeThePage(page) {

@@ -11,48 +11,55 @@ exports.create = (req, res) => {
     }
     
     // Check if the Currency already exists in the database
-    Cash.findOne({currency: req.body.currency}).then(data => {
-        
-        // If doesn't exist => Create a new one
-        if (!data) {
-            // Create a Cash
-            const cash = new Cash({
-                currency: req.body.currency || "rial",
-                amount: req.body.amount || 0,
-            });
+    Cash.findOne({currency: req.body.currency, userId: req.body.userId}).
+        then(data => {
             
-            //  Save the cash in the database
-            cash.save().then((data) => {
+            // If doesn't exist => Create a new one
+            if (!data) {
+                // Create a Cash
+                const cash = new Cash({
+                    currency: req.body.currency || "rial",
+                    amount: req.body.amount || 0,
+                    userId: req.body.userId,
+                });
+                
+                //  Save the cash in the database
+                cash.save().then((data) => {
+                    transaction.saveTransaction(data, req.body.amount, res,
+                        "income");
+                    res.send(data);
+                }).catch((err) => {
+                    res.status(500).send({
+                        message:
+                            err.message ||
+                            "Some error occurred while creating the Cash.",
+                    });
+                });
+            }
+            
+            // If exists => Update it
+            else {
+                data.amount += parseInt(req.body.amount);
+                data.save();
+                
+                // Save the Transaction
                 transaction.saveTransaction(data, req.body.amount, res,
                     "income");
+                
                 res.send(data);
-            }).catch((err) => {
-                res.status(500).send({
-                    message:
-                        err.message ||
-                        "Some error occurred while creating the Cash.",
-                });
-            });
-        }
-        
-        // If exists => Update it
-        else {
-            data.amount += parseInt(req.body.amount);
-            data.save();
+            }
             
-            // Save the Transaction
-            transaction.saveTransaction(data, req.body.amount, res, "income");
-            
-            res.send(data);
-        }
-        
-    });
+        });
     
 };
 
 // Retrieve and return all cashes from the database.
 exports.findAll = (req, res) => {
-    Cash.find().then((cashes) => {
+    
+    const {userId} = req.query;
+    console.log(userId);
+    
+    Cash.find({userId}).then((cashes) => {
         res.send(cashes);
     }).catch((err) => {
         res.status(500).send({
@@ -169,7 +176,7 @@ exports.expense = (req, res) => {
             transaction.saveTransaction(cash, money, res, "expense");
             res.send(cash);
         } else {
-            return  res.status(400).send({
+            return res.status(400).send({
                 message: "Your amount of money is not enough",
             });
         }
@@ -179,27 +186,6 @@ exports.expense = (req, res) => {
             message:
                 err.message ||
                 "Some error occurred while Saving an Expense.",
-        });
-    });
-};
-
-// Calculate the Total money stored as cash
-exports.totalAmount = (req, res) => {
-    Cash.aggregate([
-        {
-            $group:
-                {
-                    _id: null,
-                    total_amount: {$sum: "$amount"},
-                },
-        },
-    ]).then(data => {
-        res.send(data);
-    }).catch((err) => {
-        res.status(500).send({
-            message:
-                err.message ||
-                "Some error occurred while retrieving Cashes.",
         });
     });
 };

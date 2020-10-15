@@ -11,49 +11,56 @@ exports.create = (req, res) => {
     }
     
     // Check if the account already exists in the database
-    Account.findOne({account_number: req.body.account_number}).then(data => {
-        
-        // If doesn't exist => Create a new one
-        if (!data) {
-            // Create a new Account
-            const account = new Account({
-                bank_name: req.body.bank_name,
-                account_number: req.body.account_number,
-                amount: req.body.amount,
-                currency: req.body.currency || "rial",
-            });
+    Account.findOne(
+        {account_number: req.body.account_number, userId: req.body.userId}).
+        then(data => {
             
-            // Save the account in the database
-            account.save().then(data => {
+            // If doesn't exist => Create a new one
+            if (!data) {
+                // Create a new Account
+                const account = new Account({
+                    bank_name: req.body.bank_name,
+                    account_number: req.body.account_number,
+                    amount: req.body.amount,
+                    currency: req.body.currency || "rial",
+                    userId: req.body.userId,
+                });
+                
+                // Save the account in the database
+                account.save().then(data => {
+                    transaction.saveTransaction(data, req.body.amount, res,
+                        "income");
+                    res.send(data);
+                }).catch(err => {
+                    res.status(500).send({
+                        message:
+                            err.message ||
+                            "Some error occurred while creating the Note.",
+                    });
+                });
+            }
+            
+            // If exists => Update it
+            else {
+                data.amount += parseInt(req.body.amount);
+                data.save();
+                
+                // Save the Transaction
                 transaction.saveTransaction(data, req.body.amount, res,
                     "income");
+                
                 res.send(data);
-            }).catch(err => {
-                res.status(500).send({
-                    message:
-                        err.message ||
-                        "Some error occurred while creating the Note.",
-                });
-            });
-        }
-        
-        // If exists => Update it
-        else {
-            data.amount += parseInt(req.body.amount);
-            data.save();
-            
-            // Save the Transaction
-            transaction.saveTransaction(data, req.body.amount, res, "income");
-            
-            res.send(data);
-        }
-    });
+            }
+        });
     
 };
 
 // Retrieve and return all accounts from the database.
 exports.findAll = (req, res) => {
-    Account.find().then(accounts => {
+    
+    const {userId} = req.query;
+    
+    Account.find({userId}).then(accounts => {
         res.send(accounts);
     }).catch(err => {
         res.status(500).send({
@@ -158,7 +165,7 @@ exports.expense = (req, res) => {
             transaction.saveTransaction(account, money, res, "expense");
             res.send(account);
         } else {
-            return  res.status(400).send({
+            return res.status(400).send({
                 message: "Your amount of money is not enough",
             });
         }

@@ -14,9 +14,6 @@ router.post("/expense",cashes.validate(), cashes.expense);
 // Retrieve and return all cashes from the database.
 router.get("/", cashes.findAll);
 
-// Calculate the Total money stored as cash
-router.get("/total", cashes.totalAmount);
-
 // Find a single cash with a cashId
 router.get("/:cashId", cashes.findOne);
 

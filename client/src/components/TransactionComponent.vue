@@ -17,7 +17,7 @@
                head-variant="dark" small hover>
 
         <template v-slot:cell(amount)="data">
-          {{ data.item.amount | numFormat('0a') }}
+          {{ data.item.amount | numFormat("0a") }}
         </template>
 
 
@@ -74,6 +74,8 @@
 <script>
 import axios from "axios";
 
+const W = window.W;
+
 export default {
   name: "TransactionComponent",
   data() {
@@ -122,6 +124,7 @@ export default {
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
     },
+
     showAlert(kind, msg) {
       this.alertMsg = msg;
       this.alertKind = kind;
@@ -129,7 +132,7 @@ export default {
     },
 
     reRenderPage() {
-      axios.get("http://localhost:3000/transactions").then(transaction => {
+      axios.get("http://localhost:3000/transactions", {params: {userId: W.user.getId()}}).then(transaction => {
         this.transaction = transaction.data;
       }).catch(err => {
         alert(err);

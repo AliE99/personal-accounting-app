@@ -5,12 +5,13 @@ const assets = {};
 
 // Retrieve and return all assets from the database.
 exports.findAll = (req, res) => {
+    const {userId} = req.query;
     // Get all of the Accounts
-    Account.find().then(accounts => {
+    Account.find({userId}).then(accounts => {
         assets.account = accounts;
         
         // Get all of the cashes
-        Cash.find().then(cashes => {
+        Cash.find({userId}).then(cashes => {
             assets.cash = cashes;
             res.send(assets);
         }).catch(err => {

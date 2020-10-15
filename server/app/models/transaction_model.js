@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 
 const TransactionSchema = mongoose.Schema(
     {
-        kind:String,
-        amount:Number,
-        source:String,
+        kind: String,
+        amount: Number,
+        source: String,
+        userId: String,
     },
     {
         timestamps: true,

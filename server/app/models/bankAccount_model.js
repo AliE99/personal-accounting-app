@@ -6,6 +6,7 @@ const AccountSchema = mongoose.Schema(
         account_number: Number,
         amount: Number,
         currency: String,
+        userId: String,
     },
     {
         timestamps: true,

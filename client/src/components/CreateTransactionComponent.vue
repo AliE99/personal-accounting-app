@@ -3,7 +3,6 @@
     <hr>
 
 
-
     <b-form class="pb-5" @submit="onSubmit" @reset="onReset">
 
       <b-form-group required class="container mt-5" label=" : نوع تراکنش خود را مشخص کنید">
@@ -12,11 +11,11 @@
       </b-form-group>
 
       <b-alert
-               :show="dismissCountDown"
-               dismissible
-               :variant="alertKind"
-               @dismissed="dismissCountDown=0"
-               @dismiss-count-down="countDownChanged"
+          :show="dismissCountDown"
+          dismissible
+          :variant="alertKind"
+          @dismissed="dismissCountDown=0"
+          @dismiss-count-down="countDownChanged"
       >
         {{ alertMsg }}
       </b-alert>
@@ -78,6 +77,8 @@
 <script>
 import axios from "axios";
 
+const W = window.W;
+
 export default {
   name: "CreateTransactionComponent",
   data() {
@@ -122,6 +123,7 @@ export default {
         axios.post(url, {
           amount: this.amount,
           currency: this.currency,
+          userId : W.user.getId(),
         }).then(() => {
           this.showAlert("success", "تراکنش شما با موفقیت ثبت شد !");
         }).catch((err) => {
@@ -133,6 +135,7 @@ export default {
           bank_name: "a",
           account_number: this.source,
           amount: this.amount,
+          userId : W.user.getId(),
         }).then(() => {
           this.showAlert("success", "تراکنش شما با موفقیت ثبت شد !");
         }).catch(() => {
