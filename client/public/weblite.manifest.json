@@ -1,0 +1,12 @@
+{
+    "name": "personalAccounting",
+    "id": "5f945d3c6cb1bf0d609c860b",
+    "instantiable": false,
+    "searchable": true,
+    "fullscreen": false,
+    "inline": false,
+    "serveIndexes": {
+        "main": "index"
+    },
+    "version": "0.0.0"
+}
