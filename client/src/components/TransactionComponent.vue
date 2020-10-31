@@ -107,7 +107,7 @@ export default {
       this.callback(page);
     },
     deleteTransaction(id) {
-      const url = `http://localhost:3000/transactions/delete/${id}`;
+      const url = `https://present-absent.wapp.weblite.me/transactions/delete/${id}`;
       if (confirm("آیا میخواهید تراکنش مورد نظر را حذف کنید ؟")) {
         axios.delete(url).then(() => {
           this.showAlert("success", "تراکنش  شما با موفقیت حذف شد !");
@@ -132,7 +132,7 @@ export default {
     },
 
     reRenderPage() {
-      axios.get("http://localhost:3000/transactions", {params: {userId: W.user.getId()}}).then(transaction => {
+      axios.get("https://present-absent.wapp.weblite.me/transactions", {params: {userId: W.user.getId()}}).then(transaction => {
         this.transaction = transaction.data;
       }).catch(err => {
         alert(err);

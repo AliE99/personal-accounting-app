@@ -132,14 +132,14 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       if (this.selected === "cash") {
-        axios.post("http://localhost:3000/cashes", {userId: W.user.getId(), ...this.cash}).then(() => {
+        axios.post("https://present-absent.wapp.weblite.me/cashes", {userId: W.user.getId(), ...this.cash}).then(() => {
           this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
         }).catch(err => {
           this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");
           alert(err);
         });
       } else {
-        axios.post("http://localhost:3000/accounts", {userId: W.user.getId(), ...this.account}).then(() => {
+        axios.post("https://present-absent.wapp.weblite.me/accounts", {userId: W.user.getId(), ...this.account}).then(() => {
           this.showAlert("success", "دارایی شما با موفقیت ذخیره شد !");
         }).catch(err => {
           this.showAlert("danger", "مشکلی در ذخیره دارایی شما وجود دارد لطفا مقادیر صحیح وارد کنید !");

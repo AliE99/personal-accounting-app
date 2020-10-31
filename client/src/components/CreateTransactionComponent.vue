@@ -105,15 +105,15 @@ export default {
 
       if (this.kind === "income") {
         if (this.selected === "cash") {
-          url = "http://localhost:3000/cashes";
+          url = "https://present-absent.wapp.weblite.me/cashes";
         } else if (this.selected === "account") {
-          url = "http://localhost:3000/accounts";
+          url = "https://present-absent.wapp.weblite.me/accounts";
         }
       } else {
         if (this.selected === "cash") {
-          url = "http://localhost:3000/cashes/expense";
+          url = "https://present-absent.wapp.weblite.me/cashes/expense";
         } else if (this.selected === "account") {
-          url = "http://localhost:3000/accounts/expense";
+          url = "https://present-absent.wapp.weblite.me/accounts/expense";
         }
       }
 

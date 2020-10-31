@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     deleteAccount(id) {
-      const url = `http://localhost:3000/accounts/delete/${id}`;
+      const url = `https://present-absent.wapp.weblite.me/accounts/delete/${id}`;
       if (confirm("آیا میخواهید حساب مورد نظر را حذف کنید ؟")) {
         axios.delete(url).then(() => {
           this.showAlert("success", "حساب بانکی  شما با موفقیت حذف شد !");
@@ -112,7 +112,7 @@ export default {
     },
   },
   mounted() {
-    axios.get("http://localhost:3000/accounts/total").then(total=>{
+    axios.get("https://present-absent.wapp.weblite.me/accounts/total").then(total=>{
       this.total_money = total.data[0].total_amount;
     })
   },

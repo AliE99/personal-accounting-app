@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3000/assets/";
+const url = "https://present-absent.wapp.weblite.me/assets/";
 const {W} = window;
 
 async function getAssets() {
